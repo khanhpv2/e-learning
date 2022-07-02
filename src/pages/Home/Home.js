@@ -12,9 +12,10 @@ const contentStyle = {
 export default function Home(props) {
   return (
     <div >
-      <Carousel autoplay>
+      <Carousel >
         <div>
-          <h3 style={contentStyle}>1</h3>
+          {/* <h3 style={contentStyle}>1</h3> */}
+          <img src="./img/slider.png" className="w-full block" style={contentStyle} />
         </div>
         <div>
           <h3 style={contentStyle}>2</h3>

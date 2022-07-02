@@ -1,13 +1,14 @@
 import { StarIcon } from '@heroicons/react/outline'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import Course from '../../../components/Course/Course';
 import { http, TOKEN_CYBERSOFT } from '../../../utils/config';
 
 export default function Listcourses(props) {
   const {arrCourses} = useSelector( state => state.coursesReducer);
   const dispatch = useDispatch();  
 
-  useEffect (async ()=>{
+  useEffect ( ()=>{
     dispatch (async (dispatch) => {
       try {
         let result = await http.get('/api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP01');
@@ -15,37 +16,19 @@ export default function Listcourses(props) {
           type:'GET_COURSES',
           arrCourses: result.data
         };
-        console.log(result.data)
         dispatch(action)
       } catch (err) {
         console.log(err)
       }
     })
   },[])
-  console.log('arrCourses',arrCourses)
+  
 
   const renderCourses = () => {
         return arrCourses.map((course,index)=>{
-            return  <div className='h-60 w-60' key={index}>
-            {/* course */}
-            <div className='flex flex-col items-start space-y-[1px]'>
-                <img className='h-32 w-full' src={course.hinhAnh} />
-                <h2 className='font-bold text-md pt-1'>{course.tenKhoaHoc}</h2>
-                <div className='flex space-x-1'>
-                    <h3 className='text-orange-800 font-bold text-sm'>Vote</h3>
-                    <div className='flex items-center'>
-                        <StarIcon className='w-4 text-orange-400' />
-                        <StarIcon className='w-4 text-orange-400' />
-                        <StarIcon className='w-4 text-orange-400' />
-                        <StarIcon className='w-4 text-orange-400' />
-                    </div>
-                    <p className='text-xs'>Lượt xem: {course.luotXem} </p>
-                </div>
-                <div className='flex space-x-4 items-center'>
-                    <h3 className=''>Price: 19$</h3>
-                </div>  
-            </div>
-        </div>
+
+            return  <Course course={course} key={index}  /> 
+              
         })
   }
   return (

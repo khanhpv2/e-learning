@@ -10,18 +10,24 @@ import Detail from './pages/Detail/Detail';
 import Register from './pages/Register/Register';
 import Login from './pages/Login/Login';
 import SubNav from './components/Navbar/SubNav/SubNav';
-import Test from './components/Test';
 import Navbar from './components/Navbar/Navbar';
+import MaDanhMuc from './pages/MaDanhMuc/MaDanhMuc';
+import { UserTemplate } from './template/UserTemplate/UserTemplate';
 
 export const history = createBrowserHistory();
 function App() {
   return (
     <Router history={history}>
       <Switch>
-        {/* <HomeTemplate path='/contact' exact Component={Detail} />
-        <Route path='/register' exact component={Register} />
-        <Route path='/login' exact component={Login} />  */}
-        <HomeTemplate path='/' exact Component={Home} /> 
+        <HomeTemplate path='/detail/:id' exact Component={Detail} /> 
+        {/* <Route path='/register' exact component={Register} /> */}
+        {/* <Route path='/login' exact component={Login} />  */}
+        <HomeTemplate path='/' exact Component={Home} />
+        <HomeTemplate path='/list-danhmuc/:maDanhMuc' exact Component={MaDanhMuc} />
+        <UserTemplate path='/register' exact Component={Register} />
+        <UserTemplate path='/login' exact Component={Login} /> 
+
+
         {/* <Route path='/subnav' exact component={SubNav} /> */}
         {/* <Route path='/test' exact component={Test} />  */}
         {/* <Route path='/abc' exact component={Listcourses} /> */}

@@ -7,11 +7,13 @@ import { subNavReducer } from '../reducers/subNavReducer';
 import reduxThunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { coursesReducer } from '../reducers/listCourses';
+import { quanLyLogin } from '../reducers/quanLyLogin';
 // import { modalReducer } from './reducers/modalReducer';
 
 const rootReducer = combineReducers ({
     subNavReducer,
-    coursesReducer
+    coursesReducer,
+    quanLyLogin,
 })
 
 const middleware = [

@@ -9,6 +9,7 @@ import { NavLink } from 'react-router-dom'
 import SubNav from './SubNav/SubNav'
 import style from './Navbar.module.css'
 
+import useHover from '../../CustomHook/useHover';
 
 
 
@@ -19,21 +20,22 @@ export default function Navbar(props) {
     const handleClick = event => {
       // 👇️ toggle visibility
       setIsShown(current => !current);
-    };  
+    };
+    const [hoverRef, isHovered] = useHover();  
   return (
     <div>
         <div className='flex space-x-4 bg-white h-[74px] shadow-lg text-center justify-between items-center px-4 '>
             <MenuIcon className="h-6 w-6 md:hidden" /> 
             <h2 className='text-3xl'>Udemy</h2>
-            <button className={`text-sm md:block relative ${style.abcd}` } onClick={handleClick} style={{padding:'10px 0'}} >Categories
-                <div className='absolute z-10' style={{top:'63px',minWidth:'140px',display: isShown ? 'block' : 'none'}}>
-                    <SubNav/>
+            <button className={`text-sm md:block z-10 relative ${style.abcd}` } ref={hoverRef} style={{padding:'10px 0'}} >Categories
+                <div className='absolute  elementToFadeInAndOut pt-10'  style={{top:'15px',minWidth:'140px',display: isHovered ? 'block' : 'none'}}>
+                    <SubNav />
                 </div>
             </button>
             {/* <SubNav /> */}
             <form className='hidden bg-[#f8fafb] md:flex border border-black rounded-3xl flex-1 h-12 items-center'>
                 <SearchIcon className='h-5 w-5 mx-4 text-gray-400' />
-                <input type="text" placeholder='Search for anything' className='bg-transparent text-sm flex-1	' />
+                <input type="text" placeholder='Search for anything' className='bg-transparent text-sm flex-1 h-full' />
             </form>
             <h3 className='hidden text-sm lg:block'>Udemy Business</h3>
             <h3 className='hidden text-sm lg:block md:hidden'>Teach on Uedemy</h3>
