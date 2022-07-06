@@ -13,6 +13,9 @@ import SubNav from './components/Navbar/SubNav/SubNav';
 import Navbar from './components/Navbar/Navbar';
 import MaDanhMuc from './pages/MaDanhMuc/MaDanhMuc';
 import { UserTemplate } from './template/UserTemplate/UserTemplate';
+import Profile from './pages/Profile/Profile';
+import ProfileTest from './pages/ProfileTest';
+
 
 export const history = createBrowserHistory();
 function App() {
@@ -25,7 +28,10 @@ function App() {
         <HomeTemplate path='/' exact Component={Home} />
         <HomeTemplate path='/list-danhmuc/:maDanhMuc' exact Component={MaDanhMuc} />
         <UserTemplate path='/register' exact Component={Register} />
-        <UserTemplate path='/login' exact Component={Login} /> 
+        <UserTemplate path='/login' exact={false} Component={Login} />
+        <Route path='/profile' exact={false} component={Profile} />
+        <Route path='/profiletest' exact component={ProfileTest} />
+
 
 
         {/* <Route path='/subnav' exact component={SubNav} /> */}

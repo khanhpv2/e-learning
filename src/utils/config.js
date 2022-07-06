@@ -11,7 +11,11 @@ export const http = axios.create ({
     timeout:30000
 });
 
+// const arr = [[1,2,3],[4,5,6],[7,8,9],[10,11,12]]
 
+// const display = arr.map(()=>{
+    
+// })
 
 http.interceptors.request.use((config)=>{
     config.headers = {
@@ -23,3 +27,4 @@ http.interceptors.request.use((config)=>{
 },errors => {
     return Promise.reject({errors})
 })
+

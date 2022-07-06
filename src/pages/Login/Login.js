@@ -32,6 +32,7 @@ export default function Login(props) {
         // console.log(result.data.accessToken)
         // console.log(result.status)
         if (result.status == 200) {
+          alert('Dang Nhap Thanh Cong')
           const action = {
             type:'USER_LOGIN',
             userLogin: result.data

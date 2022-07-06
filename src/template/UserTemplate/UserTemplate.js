@@ -1,5 +1,7 @@
 import { Fragment } from "react";
 import { Route } from "react-router-dom";
+import Footer from "../../components/Footer/Footer";
+import Navbar from "../../components/Navbar/Navbar";
 
 export const UserTemplate = (props) => {
   const { Component, ...propsRoute } = props;
@@ -11,6 +13,7 @@ export const UserTemplate = (props) => {
         //{path:'/home', component:Home}
         return (
           <div>
+            <Navbar {...propsRoute} />
             <div className="bg-grey-lighter min-h-screen flex flex-col">
               <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
                 <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
@@ -29,6 +32,8 @@ export const UserTemplate = (props) => {
                 </div>
               </div>
             </div>
+            <Footer {...propsRoute} />
+
            
           </div>
         );
