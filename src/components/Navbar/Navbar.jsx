@@ -42,7 +42,7 @@ export default function Navbar(props) {
                     <input type="text" placeholder='Search for anything' className='bg-transparent text-sm flex-1 h-full' />
                 </form>
                 <h3 className='hidden text-sm lg:block'>Udemy Business</h3>
-                <h3 className='hidden text-sm lg:block md:hidden'>Teach on Uedemy</h3>
+                <NavLink to='/profile' className='hidden text-sm lg:block md:hidden'>Profile</NavLink>
                 <div className='flex'>
                     <SearchIcon className='h-6 w-6 text-gray-400 md:hidden' />
                     <ShoppingCartIcon className='h-6 w-6' />

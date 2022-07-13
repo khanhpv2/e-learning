@@ -9,10 +9,14 @@ export default function Detail(props) {
 
   const {detailCourse} = useSelector( state => state.coursesReducer );
   const dispatch = useDispatch();  
-
+  let params = props.match.params.id
+  const {userLogin} = useSelector (state => state.quanLyLogin)
+  let abcd = {
+      "maKhoaHoc": params,
+      "taiKhoan": userLogin.taiKhoan
+  }
   useEffect( () => {
     if (props && props.match && props.match.params && props.match.params.id) {
-        let params = props.match.params.id
         dispatch(async (dispatch) => {
             try {
                 let result = await http.get(`api/QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=` +params );
@@ -28,11 +32,22 @@ export default function Detail(props) {
                 // console.log('value',value)
                 dispatch(action)
             } catch (err) {
-                console.log(err)
+                console.log('abcd',err.response.data)
             }
         })
     }
 }, [props])
+
+  const handleRegister = async ()=> {
+    try {
+        let result = await http.post('api/QuanLyKhoaHoc/DangKyKhoaHoc',abcd)
+        if (result.status ==200 ) {
+          alert(result.data)
+        }
+    }catch(err) {
+      alert('Đã Đăng Ký Khóa Học Này Rồi')
+    }
+  }
   return (
     <div>
       <section>
@@ -199,13 +214,16 @@ export default function Detail(props) {
                   type="submit"
                   className="w-full px-6 py-3 text-sm font-bold tracking-wide text-white uppercase bg-red-700 rounded"
                 >
-                  Add to cart
+                  Thêm Giỏ Hàng
                 </button>
                 <button
                   type="button"
                   className="w-full px-6 py-3 text-sm font-bold tracking-wide uppercase bg-gray-100 border border-gray-300 rounded"
+                  onClick={()=>{
+                    handleRegister()
+                  }}
                 >
-                  Notify when on sale
+                  Đăng ký
                 </button>
               </form>
             </div>

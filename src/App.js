@@ -15,6 +15,10 @@ import MaDanhMuc from './pages/MaDanhMuc/MaDanhMuc';
 import { UserTemplate } from './template/UserTemplate/UserTemplate';
 import Profile from './pages/Profile/Profile';
 import ProfileTest from './pages/ProfileTest';
+import {AdminTemplate} from './template/AdminTemplate/AdminTemplate';
+import Users from './pages/Admin/Users/Users';
+import Courses from './pages/Admin/Courses/Courses';
+import AddCourse from './pages/Admin/Courses/AddCourse/AddCourse';
 
 
 export const history = createBrowserHistory();
@@ -31,6 +35,12 @@ function App() {
         <UserTemplate path='/login' exact={false} Component={Login} />
         <Route path='/profile' exact={false} component={Profile} />
         <Route path='/profiletest' exact component={ProfileTest} />
+        <AdminTemplate path='/admin/users' exact Component={Users} />
+        <AdminTemplate path='/admin/courses' exact Component={Courses} />
+        <AdminTemplate path='/admin/courses/addnew' exact Component={AddCourse} />
+
+
+        {/* <Route path='/admin' exact component={AdminTemplate} /> */}
 
 
 

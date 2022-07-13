@@ -16,13 +16,15 @@ export const http = axios.create ({
 // const display = arr.map(()=>{
     
 // })
-
+let a = localStorage.getItem(ACCESSTOKEN);
+let b = 'Bearer '+JSON.parse(a)
 http.interceptors.request.use((config)=>{
     config.headers = {
         ...config.headers,
         'TokenCybersoft': TOKEN_CYBERSOFT,
-        'Authorization': 'Bearer '+ localStorage.getItem(ACCESSTOKEN)
+        ['Authorization']:   b
     };
+    // console.log('configheader',config.headers)
     return config;
 },errors => {
     return Promise.reject({errors})
