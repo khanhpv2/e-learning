@@ -44,7 +44,7 @@ function App() {
         <AdminTemplate path='/admin/courses' exact Component={Courses} />
         <AdminTemplate path='/admin/courses/addnew' exact Component={AddCourse} />
         <AdminTemplate path='/admin/users/addnew' exact Component={AddUser} />
-        <AdminTemplate path='/admin/detail-user/:user' exact Component={DetailUser} />
+        <AdminTemplate path='/admin/detail-user/:id' exact Component={DetailUser} />
 
        
 

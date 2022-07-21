@@ -8,6 +8,8 @@ export default function DetailUser(props) {
     //     console.log('value', value.target.value)
     //     setKey(value.target.value);
     // }
+    console.log('props',props.match.params.id);
+    let param = props.match.params.id
     const { TabPane } = Tabs;
     const CheckboxGroup = Checkbox.Group;
     const operations = <Button></Button>;
@@ -35,7 +37,7 @@ export default function DetailUser(props) {
             </div> */}
             <Tabs tabBarExtraContent={operations} centered>
                 <TabPane tab="DANH SÁCH KHÓA HỌC ĐANG CHỜ GHI DANH" key="1">
-                    <ManageCourseUser />
+                    <ManageCourseUser param={param} />
                 </TabPane>
                 <TabPane tab="DANH SÁCH KHÓA HỌC ĐÃ GHI DANH" key="2">
                     Content of tab 2

@@ -8,7 +8,7 @@ export default function MaDanhMuc(props) {
     const {arrDanhMuc} = useSelector( state => state.coursesReducer );
     const [value, setValue] = useState();
     const dispatch = useDispatch();  
-    // console.log('props',props)
+    // console.log('params',props.match.params.maDanhMuc)
     useEffect( () => {
         if (props && props.match && props.match.params && props.match.params.maDanhMuc) {
             let params = props.match.params.maDanhMuc

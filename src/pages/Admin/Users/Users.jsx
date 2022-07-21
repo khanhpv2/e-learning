@@ -9,7 +9,12 @@ import FormEditUser from '../../../components/Modals/FormEditUser';
 import { deleteAccountUser, getArrInfoUser, searchInfoUsers } from '../../../redux/actions/QuanLyUser';
 import { http } from '../../../utils/config';
 
+
 export default function Users(props) {
+  // const location = useLocation()
+  // const params = new URLSearchParams(location.search)
+  
+
   const { arrUsers } = useSelector(state => state.usersReducer);
   const data = arrUsers
   const columns = [

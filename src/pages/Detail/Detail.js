@@ -6,6 +6,8 @@ import { http } from "../../utils/config";
 export default function Detail(props) {
   // console.log('props',props.match.params.id);
   // console.log('param',props.match.params.maDanhMuc)
+  // console.log('props',props)
+
 
   const {detailCourse} = useSelector( state => state.coursesReducer );
   const dispatch = useDispatch();  

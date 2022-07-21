@@ -67,4 +67,42 @@ export const editInfoUser = (values) => {
     }
 }
 
+export const coursesWaitingApproval = (values) => {
+    return async (dispatch) => {
+        try {
+            let result = await http.post("/api/QuanLyNguoiDung/LayDanhSachKhoaHocChoXetDuyet",values);
+            // console.log('values',values)
+            console.log(result.data);
+            const action = {
+                type: 'GET_COURSES_APPROVAL',
+                arrCourseWaitingApproval: result.data
+            };
+            dispatch(action)
+            
+          } catch (err) {
+            console.log(err);
+          }
+    }
+}
+
+export const coursesApproval = (values) => {
+    return async (dispatch) => {
+        try {
+            let result = await http.post("/api/QuanLyKhoaHoc/GhiDanhKhoaHoc",values);
+            // console.log('values',values)
+            console.log(result.data);
+            // const action = {
+            //     type: 'GET_COURSES_APPROVAL',
+            //     arrCourseWaitingApproval: result.data
+            // };
+            // dispatch(action)
+            
+          } catch (err) {
+            console.log(err);
+          }
+    }
+}
+
+
+
 

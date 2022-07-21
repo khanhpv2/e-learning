@@ -4,8 +4,10 @@ import { Route, Switch, useLocation } from "react-router-dom";
 import InfoProfile from '../Profile/Main/InfoProfile';
 
 export default function ProfileTest(props) {
-
+  console.log('props',props)
   const location =  useLocation();
+  console.log('location',location)
+
    const [key,setKey] = useState('a'); 
    const arrdata = [
         {
