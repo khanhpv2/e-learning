@@ -3,6 +3,7 @@ import { ACCESSTOKEN, http } from "../../../../utils/config";
 import { useSelector, useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { editInfoUser } from "../../../../redux/actions/QuanLyUser";
 
 export default function InfoProfile(props) {
   const dispatch = useDispatch();
@@ -34,10 +35,7 @@ export default function InfoProfile(props) {
       email: arrInfo.email,
       maLoaiNguoiDung: "HV",
     },
-    // cach 1
-    // validationSchema: signUpUserSchema,
-
-    // cách 2
+    
     validationSchema: yup.object({
       taiKhoan: yup.string().required("Yêu cầu nhập dữ liệu"),
       matKhau: yup.string().required("Yêu cầu nhập dữ liệu"),
@@ -56,19 +54,7 @@ export default function InfoProfile(props) {
       // alert(JSON.stringify(values, null, 2));
       console.log("value", values);
       // alert('abcd')
-      try {
-        let result = await http.put(
-          "/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
-          values
-        );
-        if (result.status == 200) {
-          alert("Cap nhat thanh cong");
-        }
-      } catch (err) {
-        console.log(err);
-        // console.log('response from server',err.response.data)
-        alert(err.response.data);
-      }
+      dispatch(editInfoUser(values));
     },
   });
 
@@ -175,21 +161,22 @@ export default function InfoProfile(props) {
                     <p style={{ color: "red" }}>{formik.errors.email}</p>
                   ) : null}
                 </div>
+
                 <div className="button">
-          <div>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-              Sửa thông tin
-            </button>
-            <button  type="submit" className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-              Lưu thay đổi
-            </button>
-          </div>
-        </div>
+                  <div>
+                    <button
+                      type="submit"
+                      className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                    >
+                      Lưu thay đổi
+                    </button>
+                  </div>
+
+                </div>
               </div>
             </div>
           </div>
         </form>
-       
       </div>
     </div>
   );

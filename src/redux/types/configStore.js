@@ -9,6 +9,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { coursesReducer } from '../reducers/listCourses';
 import { quanLyLogin } from '../reducers/quanLyLogin';
 import { quanlyProfile } from '../reducers/quanlyProfile';
+import { usersReducer } from '../reducers/quanLyUsers';
+import { editUserReducer } from '../reducers/editUserReducer';
 // import { modalReducer } from './reducers/modalReducer';
 
 const rootReducer = combineReducers ({
@@ -16,6 +18,8 @@ const rootReducer = combineReducers ({
     coursesReducer,
     quanLyLogin,
     quanlyProfile,
+    usersReducer,
+    editUserReducer
 })
 
 const middleware = [

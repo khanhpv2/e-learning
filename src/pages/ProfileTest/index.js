@@ -40,14 +40,14 @@ export default function ProfileTest(props) {
                 })
             } */}
                 <button value='a' onClick={changeMenu}>abcd</button>  <br></br>
-                <button value='b' onClick={changeMenu}>abcd</button>
+                <button value='b' onClick={changeMenu}>abcd2</button>
 
          </div>
           <div className="profile-right w-3/4">
             {
                 key == 'a' && (
                     <div>
-                        <InfoProfile />
+                        {/* <InfoProfile /> */}12312312321
                     </div>
                 )  
             }

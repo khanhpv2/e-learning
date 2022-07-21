@@ -19,12 +19,17 @@ import {AdminTemplate} from './template/AdminTemplate/AdminTemplate';
 import Users from './pages/Admin/Users/Users';
 import Courses from './pages/Admin/Courses/Courses';
 import AddCourse from './pages/Admin/Courses/AddCourse/AddCourse';
+import AddUser from './pages/Admin/Users/AddUser/AddUser';
+import EditUser from './pages/Admin/Users/EditUser/EditUser';
+import FormEditUser from './components/Modals/FormEditUser';
+import DetailUser from './pages/Admin/Users/DetailUser/DetailUser';
 
 
 export const history = createBrowserHistory();
 function App() {
   return (
     <Router history={history}>
+      <FormEditUser />
       <Switch>
         <HomeTemplate path='/detail/:id' exact Component={Detail} /> 
         {/* <Route path='/register' exact component={Register} /> */}
@@ -38,6 +43,11 @@ function App() {
         <AdminTemplate path='/admin/users' exact Component={Users} />
         <AdminTemplate path='/admin/courses' exact Component={Courses} />
         <AdminTemplate path='/admin/courses/addnew' exact Component={AddCourse} />
+        <AdminTemplate path='/admin/users/addnew' exact Component={AddUser} />
+        <AdminTemplate path='/admin/detail-user/:user' exact Component={DetailUser} />
+
+       
+
 
 
         {/* <Route path='/admin' exact component={AdminTemplate} /> */}
