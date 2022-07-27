@@ -1,5 +1,7 @@
+
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import {getdetailCourse} from "../../../../redux/actions/QuanLyCourses";
 
 import {
   Button,
@@ -17,30 +19,50 @@ import { useFormik } from "formik";
 import moment from "moment";
 import { http } from "../../../../utils/config";
 import { addNewCourse } from "../../../../redux/actions/QuanLyCourses";
-export default function AddCourse(props) {
+import { useEffect } from "react";
+export default function EditCourse(props) {
   const [componentSize, setComponentSize] = useState("default");
+  const params = props.match.params.id
+  
+  const {detailCourse} = useSelector (state => state.coursesReducer)
+
+  let c  =   detailCourse.danhMucKhoaHoc;
+  let d = {...c}
+
+
+  let b = detailCourse.ngayTao
+
+  console.log(detailCourse)
+  useEffect ( async ()=>{ 
+    dispatch(getdetailCourse(params))
+  },[])
 
   const onFormLayoutChange = ({ size }) => {
     setComponentSize(size);
   };
   const { userLogin } = useSelector((state) => state.quanLyLogin);
-  // console.log(userLogin)
-  const [imgSrc, setImgSrc] = useState();
+  let a = detailCourse.hinhAnh
+  const [img, setImg] = useState(a);
+//   console.log(img)
   const dispatch = useDispatch();
   const formik = useFormik({
+    enableReinitialize: true,  
     initialValues: {
-      maKhoaHoc: "",
-      biDanh: "",
-      tenKhoaHoc: "",
-      moTa: "",
-      luotXem: 0,
+      maKhoaHoc: detailCourse.maKhoaHoc,
+      biDanh: detailCourse.biDanh ,
+      tenKhoaHoc: detailCourse.tenKhoaHoc,
+      moTa: detailCourse.moTa,
+      luotXem: detailCourse.luotXem,
       danhGia: 0,
-      hinhAnh: {},
+      hinhAnh: null,
       maNhom: "GP01",
-      ngayTao: "",
+      ngayTao: detailCourse.ngayTao,
       maDanhMucKhoaHoc: "TuDuy",
       taiKhoanNguoiTao: userLogin.taiKhoan,
+      
     },
+    
+    // detailCourse.danhMucKhoaHoc.maDanhMucKhoahoc
     onSubmit: async (values) => {
       console.log("values", values);
 
@@ -52,7 +74,7 @@ export default function AddCourse(props) {
           formData.append("hinhAnh", values.hinhAnh, values.hinhAnh.name);
         }
       }
-      dispatch(addNewCourse(formData));
+    //   dispatch(addNewCourse(formData));
      
     },
   });
@@ -70,15 +92,17 @@ export default function AddCourse(props) {
   };
   const handleChangeFile = (e) => {
     let file = e.target.files[0];
-    if (file.type === "image/jpeg" || file.type === "image/jpg") {
-      let reader = new FileReader();
+    if (e.target.files[0]) {
+      formik.setFieldValue('hinhAnh',file)  
+      var reader = new FileReader();
       reader.readAsDataURL(file);
+      setImg(reader.result)
       reader.onload = (e) => {
         console.log("a", e.target.result);
-        setImgSrc(e.target.result);
+        setImg(e.target.result);
       };
     }
-    formik.setFieldValue("hinhAnh", file);
+    // formik.setFieldValue("hinhAnh", file);
   };
   const handleChangeOption = (value) => {
     formik.setFieldValue("maDanhMucKhoaHoc", value);
@@ -101,7 +125,7 @@ export default function AddCourse(props) {
         onValuesChange={onFormLayoutChange}
         size={componentSize}
       >
-        <h3>Them moi phim</h3>
+        <h3>Chỉnh sửa khóa học</h3>
         <Form.Item label="Form Size" name="size">
           <Radio.Group>
             <Radio.Button value="small">Small</Radio.Button>
@@ -110,19 +134,19 @@ export default function AddCourse(props) {
           </Radio.Group>
         </Form.Item>
         <Form.Item label="Ma Khoa Hoc">
-          <Input name="maKhoaHoc" onChange={formik.handleChange} />
+          <Input name="maKhoaHoc" onChange={formik.handleChange} value={formik.values.maKhoaHoc} />
         </Form.Item>
         <Form.Item label="Bi Danh">
-          <Input name="biDanh" onChange={formik.handleChange} />
+          <Input name="biDanh" onChange={formik.handleChange} value={formik.values.biDanh} />
         </Form.Item>
         <Form.Item label="Ten Khoa Hoc">
-          <Input name="tenKhoaHoc" onChange={formik.handleChange} />
+          <Input name="tenKhoaHoc" onChange={formik.handleChange} value={formik.values.tenKhoaHoc} />
         </Form.Item>
         <Form.Item label="Mo Ta">
-          <Input name="moTa" onChange={formik.handleChange} />
+          <Input name="moTa" onChange={formik.handleChange} value={formik.values.moTa} />
         </Form.Item>
         <Form.Item label="Ma Danh Muc Khoa Hoc">
-          <Select name="maDanhMucKhoaHoc" onChange={handleChangeOption}>
+          <Select name="maDanhMucKhoaHoc" onChange={handleChangeOption} defaultValue= {formik.values.maDanhMucKhoaHoc} >
             <Select.Option value="BackEnd">Lập trình Backend</Select.Option>
             <Select.Option value="Design">Thiết kế Web</Select.Option>
             <Select.Option value="FrontEnd">Lập trình Front end</Select.Option>
@@ -139,6 +163,8 @@ export default function AddCourse(props) {
             onChange={handleChangeInputNumber("luotXem")}
             min={0}
             max={100}
+            value={formik.values.luotXem}
+          
           />
         </Form.Item>
         <Form.Item label="Danh Gia">
@@ -147,17 +173,18 @@ export default function AddCourse(props) {
             onChange={handleChangeInputNumber("danhGia")}
             min={1}
             max={5}
+          
           />
         </Form.Item>
-
-        {/* <Form.Item label="Ma Nhom">
-          <Input name='maNhom' onChange={formik.handleChange} />
-        </Form.Item> */}
+        
         <Form.Item label="Ngay Tao">
           <DatePicker
             name="ngayTao"
             format={"DD/MM/YYYY"}
             onChange={handleChangeDatePicker}
+            // value={formik.values.ngayTao}
+            defaultValue={moment(b)}
+        
           />
         </Form.Item>
         {/* <Form.Item label="Ma Danh Muc Khoa Hoc">
@@ -170,7 +197,7 @@ export default function AddCourse(props) {
             accept="image/png, image/jpeg, image/jpg"
           />
           <br />
-          <img width={100} height={100} src={imgSrc} alt="..." />
+          <img width={100} height={100} src={img} alt="..." />
         </Form.Item>
         <Form.Item label="Button">
           <button type="submit" className="bg-blue-300 text-white p-2">

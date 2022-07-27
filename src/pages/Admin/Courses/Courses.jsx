@@ -65,8 +65,8 @@ export default function Courses(props) {
             dataIndex: '',
             render: (text,course) => {
                 return <>
-                    <NavLink className='mr-2 text-2xl p-2' to='/'><EditOutlined style={{color:'blue'}}/></NavLink>
-                    <NavLink className='text-2xl' to='/'><DeleteOutlined style={{color:'red'}}/></NavLink>
+                    <NavLink key={1} className='mr-2 text-2xl p-2' to={`/admin/courses/edit/${course.maKhoaHoc}`}><EditOutlined style={{color:'blue'}}/></NavLink>
+                    <NavLink key={2} className='text-2xl' to='/'><DeleteOutlined style={{color:'red'}}/></NavLink>
 
                 </>
             }
