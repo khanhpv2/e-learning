@@ -2,7 +2,6 @@ const stateDefault = {
     arrCourses: [],
     arrDanhMuc:[],
     detailCourse: {}
-
 }
 
 export const coursesReducer = (state = stateDefault,action) => {
@@ -19,6 +18,16 @@ export const coursesReducer = (state = stateDefault,action) => {
             state.detailCourse = action.detailCourse;
             return {...state}
         }
+        case 'SEARCH_COURSES': {
+
+            let info = action.searchCourse.toLowerCase();
+            if (info != '') {
+                let result = state.arrCourses.filter (course => course.tenKhoaHoc.toLowerCase().includes(info) === true);
+                state.arrCourses = [...result];
+                return {...state}
+            }
+        }
+
         default : return state
     }
 }

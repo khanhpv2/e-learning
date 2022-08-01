@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {getdetailCourse} from "../../../../redux/actions/QuanLyCourses";
+import {editCourse, getdetailCourse} from "../../../../redux/actions/QuanLyCourses";
 
 import {
   Button,
@@ -74,7 +74,7 @@ export default function EditCourse(props) {
           formData.append("hinhAnh", values.hinhAnh, values.hinhAnh.name);
         }
       }
-    //   dispatch(addNewCourse(formData));
+      dispatch(editCourse(formData));
      
     },
   });

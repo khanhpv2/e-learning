@@ -2,6 +2,7 @@ import { StarIcon } from '@heroicons/react/outline'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Course from '../../../components/Course/Course';
+import { getarrCourse } from '../../../redux/actions/QuanLyCourses';
 import { http, TOKEN_CYBERSOFT } from '../../../utils/config';
 
 export default function Listcourses(props) {
@@ -9,18 +10,7 @@ export default function Listcourses(props) {
   const dispatch = useDispatch();  
 
   useEffect ( ()=>{
-    dispatch (async (dispatch) => {
-      try {
-        let result = await http.get('/api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP01');
-        const action = {
-          type:'GET_COURSES',
-          arrCourses: result.data
-        };
-        dispatch(action)
-      } catch (err) {
-        console.log(err)
-      }
-    })
+    dispatch (getarrCourse())
   },[])
   
 

@@ -18,18 +18,7 @@ export default function SubNav(props) {
   // },[])
 
   useEffect ( ()=>{
-    dispatch (async (dispatch) => {
-      try {
-        let result = await http.get('api/QuanLyKhoaHoc/LayDanhMucKhoaHoc');
-        const action = {
-          type:'GET_SUB_MENU',
-          arrMenu: result.data
-        };  
-        dispatch(action) 
-      } catch (err) {
-        console.log(err)
-      }
-    })
+    dispatch (getMenu())
   },[])
 
   // console.log('arrMenu',arrMenu)
@@ -45,11 +34,6 @@ export default function SubNav(props) {
   return (
     <div>
       <div className={style.abcd}>
-       {/* <a href="" className='red'>abcd</a>
-       <a href="" className='red'>adsd</a>
-       <a href="" className='red'>sdsds</a>
-       <a href="" className='red'>fdsfsdf</a>
-       <a href="" className='red'>fsdafsdf</a> */}
        {renderMenu()}
     </div>
       </div>

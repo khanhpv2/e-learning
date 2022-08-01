@@ -6,13 +6,14 @@ import { Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { http } from '../../../utils/config';
 import { NavLink } from 'react-router-dom';
+import { deleteCourse, getarrCourse, searchCourse } from '../../../redux/actions/QuanLyCourses';
 export default function Courses(props) {
     const columns = [
         {
             title: 'Ten Khoa Hoc',
             dataIndex: 'tenKhoaHoc',
-           
-            
+
+
             sorter: (a, b) => {
                 let tenKhoaHocA = a.tenKhoaHoc.toLowerCase().trim();
                 let tenKhoaHocB = b.tenKhoaHoc.toLowerCase().trim();
@@ -21,7 +22,7 @@ export default function Courses(props) {
                 }
                 return -1
             },
-            sortDirections: ['descend','ascend'],
+            sortDirections: ['descend', 'ascend'],
         },
         {
             title: 'Ma Khoa Hoc',
@@ -32,10 +33,10 @@ export default function Courses(props) {
         {
             title: 'Hinh Anh',
             dataIndex: 'hinhAnh',
-            render: (text,course,index) => {
+            render: (text, course, index) => {
                 return <>
-                    <img src={course.hinhAnh} width={50} height={50} onError={(e)=>{
-                        e.target.onError=null; e.target.src=`https:picsum.photos/id/${index}/50/50`
+                    <img src={course.hinhAnh} width={50} height={50} onError={(e) => {
+                        e.target.onError = null; e.target.src = `https:picsum.photos/id/${index}/50/50`
                     }} />
                 </>
             }
@@ -43,9 +44,9 @@ export default function Courses(props) {
         {
             title: 'Danh Muc Khoa Hoc',
             dataIndex: 'danhMucKhoaHoc',
-            render: (text,course,index) => {
+            render: (text, course, index) => {
                 return <>
-                   <p>{course.danhMucKhoaHoc.maDanhMucKhoahoc} </p>
+                    <p>{course.danhMucKhoaHoc.maDanhMucKhoahoc} </p>
                 </>
             },
             filters: [
@@ -57,23 +58,27 @@ export default function Courses(props) {
                     text: 'Lập trình Front end',
                     value: 'Lập trình Front end',
                 },
-               
+
             ],
         },
         {
             title: '',
             dataIndex: '',
-            render: (text,course) => {
+            render: (text, course) => {
                 return <>
-                    <NavLink key={1} className='mr-2 text-2xl p-2' to={`/admin/courses/edit/${course.maKhoaHoc}`}><EditOutlined style={{color:'blue'}}/></NavLink>
-                    <NavLink key={2} className='text-2xl' to='/'><DeleteOutlined style={{color:'red'}}/></NavLink>
+                    <NavLink key={1} className='mr-2 text-2xl p-2' to={`/admin/courses/edit/${course.maKhoaHoc}`}><EditOutlined style={{ color: 'blue' }} /></NavLink>
+                    <button key={2} className='text-2xl' onClick={() => {
+                        if (window.confirm('Ban co chac muon xoa tai khoan' + course.maKhoaHoc)) {
+                            dispatch(deleteCourse(course.maKhoaHoc))
+                        }
+                    }}><DeleteOutlined style={{ color: 'red' }} /></button>
 
                 </>
             }
         },
     ];
     const { arrCourses } = useSelector(state => state.coursesReducer);
-    console.log('arrCourses',arrCourses)
+    console.log('arrCourses', arrCourses)
 
     const data = arrCourses
 
@@ -89,30 +94,27 @@ export default function Courses(props) {
             }}
         />
     );
-    const onSearch = (value) => console.log(value);
+    const onSearch = (value) => {
+        console.log(value)
+        // dispatch(searchCourse(value))
+        const action = {
+            type: 'SEARCH_COURSES',
+            searchCourse: value
+        }
+        dispatch(action)
+      }
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(async (dispatch) => {
-            try {
-                let result = await http.get('/api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP01');
-                const action = {
-                    type: 'GET_COURSES',
-                    arrCourses: result.data
-                };
-                dispatch(action)
-            } catch (err) {
-                console.log(err)
-            }
-        })
+        dispatch(getarrCourse())
     }, [])
     // console.log('props',props)
-    const {history} =props
+    const { history } = props
     return (
         <div>
             <h3>Quan Ly Khoa Hoc</h3>
-            <Button type='primary' className='mb-2' onClick={()=>{
+            <Button type='primary' className='mb-2' onClick={() => {
                 history.push('/admin/courses/addnew')
             }}>Them khoa hoc</Button>
             <Search
