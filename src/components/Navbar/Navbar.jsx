@@ -27,7 +27,7 @@ export default function Navbar(props) {
     // console.log(userLogin)
     // console.log('props',props)
     return (
-        <div>
+        <div id='header'>
             <div className='flex space-x-4 bg-white h-[74px] shadow-lg text-center justify-between items-center px-4 '>
                 <MenuIcon className="h-6 w-6 md:hidden" />
                 <h2 className='text-3xl'>Udemy</h2>
@@ -49,7 +49,7 @@ export default function Navbar(props) {
                 </div>
                 <div className='hidden md:flex pr-4 space-x-4 justify-end'>
                     {
-                        userLogin.accessToken ? <p>Hi, {userLogin.hoTen} </p> :
+                        userLogin.accessToken ? (<div>Hi, {userLogin.hoTen} </div>):
                             <>
                                 <NavLink to='/login' className='border border-black h-10 text-sm font-bold w-20 hover:bg-[#F5F5F5]'>
                                     Login

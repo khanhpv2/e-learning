@@ -66,6 +66,40 @@ export const editInfoUser = (values) => {
           }
     }
 }
+export const getCourseInfoUser = () => {
+  return async (dispatch) => {
+    try {
+      let result = await http.post("/api/QuanLyNguoiDung/ThongTinTaiKhoan");
+      console.log("result", result);
+      // setInfo(result.data)
+      const action = {
+        type: "GET_COURSE_ATTEND",
+        arrCourseAttend: result.data.chiTietKhoaHocGhiDanh,
+      };
+      dispatch(action);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+}
+
+export const getInfoUser = () => {
+    return async (dispatch) => {
+        try {
+            let result = await http.post("/api/QuanLyNguoiDung/ThongTinTaiKhoan");
+            console.log("result", result);
+            // setInfo(result.data)
+            const action = {
+              type: "GET_PROFILE",
+              arrInfo: result.data,
+            };
+            dispatch(action);
+          } catch (err) {
+            console.log(err);
+          }
+    }
+}
+
 
 export const coursesWaitingApproval = (values) => {
     return async (dispatch) => {
@@ -101,6 +135,20 @@ export const coursesApproval = (values) => {
             console.log(err);
           }
     }
+}
+export const cancelRegistrationCourse = (values) => {
+  return async (dispatch) => {
+    try{
+      let result = await http.post('api/QuanLyKhoaHoc/HuyGhiDanh',values)
+      if (result.status == 200) {
+        alert(result.data)
+        dispatch(getCourseInfoUser())
+      }
+    }catch(err) {
+      console.log('err',err)
+    }
+
+  }
 }
 
 

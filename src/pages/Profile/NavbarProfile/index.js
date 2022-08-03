@@ -1,9 +1,13 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { USER_LOGIN } from "../../../utils/config";
 import styles from "./styles.module.css";
 export default function NavbarProfile(props) {
   const location = useLocation();
-  console.log("location", location);
+  // console.log("location", location);
+let a = localStorage.getItem(USER_LOGIN);
+let b = JSON.parse(a)
+console.log('b',b);
 
   const arrListMenu = [
     {
@@ -28,7 +32,7 @@ export default function NavbarProfile(props) {
       >
         <img src="http://bootdey.com/img/Content/User_for_snippets.png" className="rounded-full mx-auto" style={{width:100,height:100}} />
       </div>
-      <div className="title">Nguyen Van Teo</div>
+      <div className="title pb-3" style={{fontSize:'25px'}}>{b.hoTen}</div>
       <div className="menu-profile">
         <ul>
           {arrListMenu.map((item, index) => {
@@ -36,13 +40,15 @@ export default function NavbarProfile(props) {
               <Link
                 to={item.path}
                 key={index}
+                style={{color:'black'}}
                 className={`${
                   item.path === location.pathname
                     ? styles.activeMenu
                     : styles.unactiveMenu
+                  
                 }`}
               >
-                <li>{item.name}</li>
+                <li style= {{padding:'10px 10px'}}>{item.name}</li>
               </Link>
             );
           })}

@@ -33,12 +33,12 @@ export default function Profile(props) {
   return (
     <div>
 
-      <div className='container-profile mx-auto'>
-        <div className="box-profile flex">
-          <div className="profile-left w-1/4 self-stretch">
+      <div className='container-profile'>
+        <div className="box-profile flex " style={{maxWidth:'1200px',margin:'auto',alignItems:'center'}}>
+          <div className="profile-left w-1/4 self-stretch pr-3">
             <NavbarProfile />
           </div>
-          <div className="profile-right w-3/4 p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+          <div className="profile-right w-3/4 p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700" style={{minHeight:'282px'}}>
         
             <Switch>
               {routes.map((route, idx) => {

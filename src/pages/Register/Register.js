@@ -3,6 +3,8 @@ import React from "react";
 import { useFormik } from 'formik';
 import * as yup from 'yup'
 import { http } from "../../utils/config";
+import { useDispatch } from "react-redux";
+import { signUp } from "../../redux/actions/baseService";
 
 export default function Register(props) {
 
@@ -13,7 +15,7 @@ export default function Register(props) {
   //       soDT:yup.string().required('Yeu cau nhap du lieu').matches(/^[0-9]+$/),
   //       email:yup.string().required('Yeu cau nhap du lieu').email('Phai nhap email')
   // })
- 
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
       taiKhoan: '',
@@ -41,16 +43,7 @@ export default function Register(props) {
       // alert(JSON.stringify(values, null, 2));
       console.log('value',values)
       // alert('abcd')
-      try {
-        let result = await http.post('/api/QuanLyNguoiDung/DangKy',values);
-        if (result.status == 200) {
-            alert('Dang ky thanh cong')
-          } 
-      } catch (err) {
-        console.log(err)
-        // console.log('response from server',err.response.data)
-        alert(err.response.data)
-      }
+      dispatch(signUp(values))
     },
   });
 

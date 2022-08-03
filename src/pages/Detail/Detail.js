@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getdetailCourse } from "../../redux/actions/QuanLyCourses";
 import { http } from "../../utils/config";
 
 export default function Detail(props) {
@@ -19,24 +20,7 @@ export default function Detail(props) {
   }
   useEffect( () => {
     if (props && props.match && props.match.params && props.match.params.id) {
-        dispatch(async (dispatch) => {
-            try {
-                let result = await http.get(`api/QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=` +params );
-
-                const action = {
-                    type: 'GET_DETAIL',
-                    detailCourse: result.data
-                };
-                console.log('detail-course',result.data)
-                // if (result) {
-                //     setValue(result.data);
-                // }
-                // console.log('value',value)
-                dispatch(action)
-            } catch (err) {
-                console.log('abcd',err.response.data)
-            }
-        })
+        dispatch(getdetailCourse(params))
     }
 }, [props])
 
@@ -68,25 +52,9 @@ export default function Detail(props) {
                   src={detailCourse.hinhAnh}
                   className="w-full rounded-xl h-72 lg:h-[540px] object-cover"
                 />
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-black/75 text-white px-3 py-1.5 inline-flex items-center">
-                  <svg
-                    className="w-4 h-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                    />
-                  </svg>
-                  <span className="text-xs ml-1.5">Hover to zoom</span>
-                </div>
+
               </div>
-              <ul className="flex gap-1 mt-1">
+              {/* <ul className="flex gap-1 mt-1">
                 <li>
                   <img
                     className="object-cover w-16 h-16 rounded-md"
@@ -115,11 +83,11 @@ export default function Detail(props) {
                     alt
                   />
                 </li>
-              </ul>
+              </ul> */}
             </div>
             <div className="lg:top-0 lg:sticky">
               <form className="space-y-4 lg:pt-8">
-                <fieldset>
+                {/* <fieldset>
                   <legend className="text-lg font-bold">Color</legend>
                   <div className="flex mt-2 space-x-1">
                     <label htmlFor="color_green" className="cursor-pointer">
@@ -169,8 +137,8 @@ export default function Detail(props) {
                       <span className="block w-6 h-6 bg-indigo-700 border border-gray-200 rounded-full ring-1 ring-offset-1 ring-transparent peer-checked:ring-gray-300" />
                     </label>
                   </div>
-                </fieldset>
-                <fieldset>
+                </fieldset> */}
+                {/* <fieldset>
                   <legend className="text-lg font-bold">Material</legend>
                   <div className="flex mt-2 space-x-1">
                     <label htmlFor="material_cotton" className="cursor-pointer">
@@ -198,14 +166,14 @@ export default function Detail(props) {
                       </span>
                     </label>
                   </div>
-                </fieldset>
+                </fieldset> */}
                 <div className="p-4 bg-gray-100 border rounded">
                   <p className="text-sm">
                     <span className="block">
-                      Pay as low as $3/mo with 0% APR.
+                      Mua ngay để được giảm giá ngay trong ngày hôm nay
                     </span>
                     <a href className="inline-block mt-1 underline">
-                      Find out more
+                      Nhấn vào để thanh toán
                     </a>
                   </p>
                 </div>
@@ -215,10 +183,14 @@ export default function Detail(props) {
                 <button
                   type="submit"
                   className="w-full px-6 py-3 text-sm font-bold tracking-wide text-white uppercase bg-red-700 rounded"
+                  onClick={()=>{
+                    handleRegister()
+                  }}
                 >
-                  Thêm Giỏ Hàng
+                  Đăng ký
+
                 </button>
-                <button
+                {/* <button
                   type="button"
                   className="w-full px-6 py-3 text-sm font-bold tracking-wide uppercase bg-gray-100 border border-gray-300 rounded"
                   onClick={()=>{
@@ -226,7 +198,7 @@ export default function Detail(props) {
                   }}
                 >
                   Đăng ký
-                </button>
+                </button> */}
               </form>
             </div>
             <div className="lg:col-span-3">
@@ -240,7 +212,8 @@ export default function Detail(props) {
                   /* @apply mb-1 pb-2 border-b border-gray-200; */
                 }}
               >
-                <p>
+                <p style={{color:'20px',fontWeight:'00'}}>Mô tả</p>
+                <p className="border border-neutral-300	p-2">
                     {detailCourse.moTa}
                 </p>
                 {/* <p>
@@ -255,7 +228,7 @@ export default function Detail(props) {
                   <li>Made from recycled materials</li>
                 </ul> */}
                 {/* <iframe
-                  src="https://www.youtube-nocookie.com/embed/Eb-Vfe61W6A?controls=0"
+                  src="https://www.youtube.com/watch?v=ePzSPqyr0cY"
                   frameBorder={0}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen

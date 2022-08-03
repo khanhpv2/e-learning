@@ -3,25 +3,17 @@ import { ACCESSTOKEN, http } from "../../../../utils/config";
 import { useSelector, useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { editInfoUser } from "../../../../redux/actions/QuanLyUser";
+import {
+  editInfoUser,
+  getInfoUser,
+} from "../../../../redux/actions/QuanLyUser";
 
 export default function InfoProfile(props) {
   const dispatch = useDispatch();
   const { arrInfo } = useSelector((state) => state.quanlyProfile);
 
-  useEffect(async () => {
-    try {
-      let result = await http.post("/api/QuanLyNguoiDung/ThongTinTaiKhoan");
-      console.log("result", result);
-      // setInfo(result.data)
-      const action = {
-        type: "GET_PROFILE",
-        arrInfo: result.data,
-      };
-      dispatch(action);
-    } catch (err) {
-      console.log(err);
-    }
+  useEffect(() => {
+    dispatch(getInfoUser());
   }, []);
 
   const formik = useFormik({
@@ -35,7 +27,7 @@ export default function InfoProfile(props) {
       email: arrInfo.email,
       maLoaiNguoiDung: "HV",
     },
-    
+
     validationSchema: yup.object({
       taiKhoan: yup.string().required("Yêu cầu nhập dữ liệu"),
       matKhau: yup.string().required("Yêu cầu nhập dữ liệu"),
@@ -61,14 +53,18 @@ export default function InfoProfile(props) {
   return (
     <div>
       <div className="container-profile ">
-        <h1>Thông tin tài khoản</h1>
-        <p>Xem thông tin hoặc chỉnh sửa thông tin của bạn</p>
+        <h1 className="text-center" style={{ fontSize: "30px" }}>
+          Thông tin tài khoản
+        </h1>
+        <p className="text-center">
+          Xem thông tin hoặc chỉnh sửa thông tin của bạn
+        </p>
         <hr />
 
-        <form className="h-full" onSubmit={formik.handleSubmit}>
-          <div className="border-b-2 block md:flex">
-            <div className="w-full  p-8 bg-white lg:ml-4 shadow-md">
-              <div className="rounded  shadow p-6">
+        <form className="" onSubmit={formik.handleSubmit}>
+          <div className=" block md:flex">
+            <div className="w-full  p-8 bg-white lg:ml-4 ">
+              <div className="">
                 <div className="pb-6">
                   <label
                     htmlFor="name"
@@ -76,16 +72,37 @@ export default function InfoProfile(props) {
                   >
                     Tên tài khoản
                   </label>
-                  <div className="flex">
+                  <div className="border border-slate-200 ">
                     <input
                       name="taiKhoan"
                       className="border-1  rounded-r px-4 py-2 w-full"
                       type="text"
                       value={formik.values.taiKhoan}
                       onChange={formik.handleChange}
+                      disabled={true}
                     />
                     {formik.touched.taiKhoan && formik.errors.taiKhoan ? (
                       <p style={{ color: "red" }}>{formik.errors.taiKhoan}</p>
+                    ) : null}
+                  </div>
+                </div>
+                <div className="pb-4 ">
+                  <label
+                    htmlFor="about"
+                    className="font-semibold text-gray-700 block pb-1"
+                  >
+                    Mật Khẩu
+                  </label>
+                  <div className="border border-slate-200 ">
+                    <input
+                      name="matKhau"
+                      className="border-1  rounded-r px-4 py-2 w-full"
+                      type="password"
+                      value={formik.values.matKhau}
+                      onChange={formik.handleChange}
+                    />
+                    {formik.touched.matKhau && formik.errors.matKhau ? (
+                      <p style={{ color: "red" }}>{formik.errors.matKhau}</p>
                     ) : null}
                   </div>
                 </div>
@@ -94,36 +111,21 @@ export default function InfoProfile(props) {
                     htmlFor="about"
                     className="font-semibold text-gray-700 block pb-1"
                   >
-                    Mật Khẩu
-                  </label>
-                  <input
-                    name="matKhau"
-                    className="border-1  rounded-r px-4 py-2 w-full"
-                    type="text"
-                    value={formik.values.matKhau}
-                    onChange={formik.handleChange}
-                  />
-                  {formik.touched.matKhau && formik.errors.matKhau ? (
-                    <p style={{ color: "red" }}>{formik.errors.matKhau}</p>
-                  ) : null}
-                </div>
-                <div className="pb-4">
-                  <label
-                    htmlFor="about"
-                    className="font-semibold text-gray-700 block pb-1"
-                  >
                     Tên Người Dùng
                   </label>
+                  <div className="border border-slate-200 ">
                   <input
                     name="hoTen"
                     className="border-1  rounded-r px-4 py-2 w-full"
                     type="text"
                     value={formik.values.hoTen}
                     onChange={formik.handleChange}
-                  />
+                    />
                   {formik.touched.hoTen && formik.errors.hoTen ? (
                     <p style={{ color: "red" }}>{formik.errors.hoTen}</p>
-                  ) : null}
+                    ) : null}
+                  </div> 
+
                 </div>
                 <div className="pb-4">
                   <label
@@ -132,16 +134,20 @@ export default function InfoProfile(props) {
                   >
                     Số Điện Thoại
                   </label>
+                  <div className="border border-slate-200 ">
+
                   <input
                     name="soDT"
                     className="border-1  rounded-r px-4 py-2 w-full"
                     type="text"
                     value={formik.values.soDT}
                     onChange={formik.handleChange}
-                  />
+                    />
                   {formik.touched.soDT && formik.errors.soDT ? (
                     <p style={{ color: "red" }}>{formik.errors.soDT}</p>
-                  ) : null}
+                    ) : null}
+
+                    </div>
                 </div>
                 <div className="pb-4">
                   <label
@@ -150,16 +156,20 @@ export default function InfoProfile(props) {
                   >
                     Email
                   </label>
+                  <div className="border border-slate-200 ">
+
                   <input
                     name="email"
                     className="border-1  rounded-r px-4 py-2 w-full"
                     type="email"
                     value={formik.values.email}
                     onChange={formik.handleChange}
-                  />
+                    disabled = {true}
+                    />
                   {formik.touched.email && formik.errors.email ? (
                     <p style={{ color: "red" }}>{formik.errors.email}</p>
-                  ) : null}
+                    ) : null}
+                    </div>
                 </div>
 
                 <div className="button">
@@ -171,7 +181,6 @@ export default function InfoProfile(props) {
                       Lưu thay đổi
                     </button>
                   </div>
-
                 </div>
               </div>
             </div>

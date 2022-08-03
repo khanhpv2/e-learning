@@ -1,15 +1,18 @@
 import React from 'react'
 import { useFormik } from 'formik';
 import * as yup from 'yup'
-import { http } from "../../utils/config";
+import { http, USER_LOGIN } from "../../utils/config";
 import {useSelector,useDispatch} from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { signIn } from '../../redux/actions/baseService';
 
 export default function Login(props) {
 
-
+  
   const dispatch = useDispatch()
   const {userLogin} = useSelector (state => state.quanLyLogin)
-  console.log('userLogin',userLogin)
+  
+  // console.log('userLogin',userLogin)
   const formik = useFormik({
     initialValues: {
       taiKhoan: '',
@@ -27,32 +30,20 @@ export default function Login(props) {
 
       console.log('value',values)
      
-      try {
-        let result = await http.post('/api/QuanLyNguoiDung/DangNhap',values);
-        // console.log(result.data.accessToken)
-        // console.log(result.status)
-        if (result.status == 200) {
-          alert('Dang Nhap Thanh Cong')
-          const action = {
-            type:'USER_LOGIN',
-            userLogin: result.data
-          }; 
-            dispatch(action)
-        }
-      } catch (err) {
-        console.log(err)
-        // console.log('response from server',err.response.data)
-        // alert(err.response.data)
-      }
+      dispatch(signIn(values))
     },
   });
+  if (localStorage.getItem(USER_LOGIN)) {
+    alert("Bạn đã đăng nhập rồi !");
+    return <Redirect to="/" />;
+  }
   return (
     <div>
-       <form onSubmit={formik.handleSubmit}>
+       <form onSubmit={formik.handleSubmit} >
         <h1 className="mb-8 text-3xl text-center">Đăng Nhập</h1>
         <input
           type="text"
-          className="block border border-grey-light w-full p-3 rounded mb-4"
+          className="block border border-grey-light w-full p-5 rounded mb-4"
           name="taiKhoan"
           placeholder="Tài Khoản"
           onChange={formik.handleChange}
@@ -62,7 +53,7 @@ export default function Login(props) {
        ) : null}
         <input
           type="password"
-          className="block border border-grey-light w-full p-3 rounded mb-4"
+          className="block border border-grey-black w-full p-5 rounded mb-4"
           name="matKhau"
           placeholder="Mật Khẩu"
           onChange={formik.handleChange}
