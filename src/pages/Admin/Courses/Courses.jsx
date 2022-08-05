@@ -8,9 +8,22 @@ import { http } from '../../../utils/config';
 import { NavLink } from 'react-router-dom';
 import { deleteCourse, getarrCourse, searchCourse } from '../../../redux/actions/QuanLyCourses';
 export default function Courses(props) {
+    // const {arrCourses} = useSelector ( state => state.coursesReducer)
+    const { arrCourses } = useSelector(state => state.coursesReducer);
+    const dataCourse = arrCourses.map((course, index) => {
+        return {
+            key: index,
+            tenDanhMuc: `${course.danhMucKhoaHoc.tenDanhMucKhoaHoc}`,
+            maDanhMuc: `${course.danhMucKhoaHoc.maDanhMucKhoahoc}`,
+            tenKhoaHoc: `${course.tenKhoaHoc}`,
+            maKhoaHoc: `${course.maKhoaHoc}`,
+            hinhAnh: `${course.hinhAnh}`
+        }
+    })
+    console.log('dataCourse', dataCourse)
     const columns = [
         {
-            title: 'Ten Khoa Hoc',
+            title: 'Tên Khoá Học',
             dataIndex: 'tenKhoaHoc',
 
 
@@ -25,13 +38,13 @@ export default function Courses(props) {
             sortDirections: ['descend', 'ascend'],
         },
         {
-            title: 'Ma Khoa Hoc',
+            title: 'Mã Khoá Học',
             dataIndex: 'maKhoaHoc',
             defaultSortOrder: 'descend',
             sorter: (a, b) => a.age - b.age,
         },
         {
-            title: 'Hinh Anh',
+            title: 'Hình Ảnh',
             dataIndex: 'hinhAnh',
             render: (text, course, index) => {
                 return <>
@@ -42,24 +55,36 @@ export default function Courses(props) {
             }
         },
         {
-            title: 'Danh Muc Khoa Hoc',
-            dataIndex: 'danhMucKhoaHoc',
-            render: (text, course, index) => {
-                return <>
-                    <p>{course.danhMucKhoaHoc.maDanhMucKhoahoc} </p>
-                </>
-            },
+            title: 'Danh Mục Khoá Học',
+            dataIndex: 'maDanhMuc',
+            // render: (text, course, index) => {
+            //     return <>
+            //         <p>{course.danhMucKhoaHoc.maDanhMucKhoahoc} </p>
+            //     </>
+            // },
             filters: [
                 {
-                    text: 'FullStack',
-                    value: 'FullStack',
+                    text: 'Lập Trình Front End',
+                    value: 'FrontEnd'
                 },
                 {
-                    text: 'Lập trình Front end',
-                    value: 'Lập trình Front end',
+                    text: 'Lập trình Backend',
+                    value: 'Backend'
                 },
-
+                {
+                    text: 'Lập trình Full Stack',
+                    value: 'FullStack'
+                },
+                {
+                    text: 'Tư duy lập trình',
+                    value: 'TuDuy'
+                },
+                {
+                    text: 'Lập trình di động',
+                    value: 'DiDong'
+                }
             ],
+            onFilter: (value, record) => record.maDanhMuc.indexOf(value) === 0,
         },
         {
             title: '',
@@ -68,7 +93,7 @@ export default function Courses(props) {
                 return <>
                     <NavLink key={1} className='mr-2 text-2xl p-2' to={`/admin/courses/edit/${course.maKhoaHoc}`}><EditOutlined style={{ color: 'blue' }} /></NavLink>
                     <button key={2} className='text-2xl' onClick={() => {
-                        if (window.confirm('Ban co chac muon xoa tai khoan' + course.maKhoaHoc)) {
+                        if (window.confirm('Bạn có chắc muốn xóa tài khoản' + course.maKhoaHoc)) {
                             dispatch(deleteCourse(course.maKhoaHoc))
                         }
                     }}><DeleteOutlined style={{ color: 'red' }} /></button>
@@ -77,10 +102,9 @@ export default function Courses(props) {
             }
         },
     ];
-    const { arrCourses } = useSelector(state => state.coursesReducer);
     console.log('arrCourses', arrCourses)
 
-    const data = arrCourses
+    const data = dataCourse
 
     const onChange = (pagination, filters, sorter, extra) => {
         console.log('params', pagination, filters, sorter, extra);
@@ -102,7 +126,7 @@ export default function Courses(props) {
             searchCourse: value
         }
         dispatch(action)
-      }
+    }
 
     const dispatch = useDispatch();
 
@@ -113,10 +137,10 @@ export default function Courses(props) {
     const { history } = props
     return (
         <div>
-            <h3>Quan Ly Khoa Hoc</h3>
-            <Button type='primary' className='mb-2' onClick={() => {
+            <h3 style={{ fontSize: '30px' }}>Quản lý khóa học</h3>
+            <Button type='primary' className='mb-2' style={{ fontSize: '15px' }} onClick={() => {
                 history.push('/admin/courses/addnew')
-            }}>Them khoa hoc</Button>
+            }}>Thêm khóa học</Button>
             <Search
                 placeholder="input search text"
                 allowClear

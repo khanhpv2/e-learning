@@ -41,8 +41,9 @@ export default function Attendance(props) {
               </div>
             </div>
           </div>
-          <div className="button flex items-center " style={{width:'10%'}}>
+          <div className="button flex items-center text-center " style={{width:'10%'}}>
             <button
+
               onClick={() => {
                 let inFoUser = {
                   maKhoaHoc: course.maKhoaHoc,

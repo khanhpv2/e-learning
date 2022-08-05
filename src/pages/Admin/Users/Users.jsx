@@ -13,9 +13,11 @@ import { http } from '../../../utils/config';
 export default function Users(props) {
   // const location = useLocation()
   // const params = new URLSearchParams(location.search)
+  // const {history} = props
   
 
   const { arrUsers } = useSelector(state => state.usersReducer);
+  // console.log('propuser',props);
   const data = arrUsers
   const columns = [
     {
@@ -114,14 +116,14 @@ export default function Users(props) {
 
   return (
     <div>
-      <h3>Quan Ly Nguoi Dung</h3>
+      <h3 style={{fontSize:'30px'}}>Quản Lý Người Dùng</h3>
       
     
-      <Button type='primary' className='mb-2' onClick={() => {
+      <Button type='primary' className='mb-2' style={{fontSize:'15px'}} onClick={() => {
         history.push('/admin/users/addnew')
-      }}>Them Nguoi Dung</Button>
+      }}>Thêm Người Dùng</Button>
       <Search
-                placeholder="input search text"
+                placeholder="Tìm kiếm"
                 allowClear
                 enterButton="Search"
                 size="large"

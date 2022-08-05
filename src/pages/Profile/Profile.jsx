@@ -4,8 +4,10 @@ import NavbarProfile from './NavbarProfile';
 import { Route, Switch, useLocation } from "react-router-dom";
 import Attendance from './Main/Attendance';
 import MyCourse from './Main/MyCourse';
+import Footer from '../../components/Footer/Footer';
+import Navbar from '../../components/Navbar/Navbar';
 export default function Profile(props) {
-
+  console.log('props',props);
   const location =  useLocation();
   const routes = [
     {
@@ -20,22 +22,23 @@ export default function Profile(props) {
       name: 'Attendance',
       component: Attendance,
     },
-    {
-      path: '/profile/mycourse',
-      exact: true,
-      name: 'MyCourse',
-      component: MyCourse,
-    },
+    // {
+    //   path: '/profile/mycourse',
+    //   exact: true,
+    //   name: 'MyCourse',
+    //   component: MyCourse,
+    // },
   ];
 
   
 
   return (
     <div>
-
-      <div className='container-profile'>
-        <div className="box-profile flex " style={{maxWidth:'1200px',margin:'auto',alignItems:'center'}}>
-          <div className="profile-left w-1/4 self-stretch pr-3">
+      <Navbar />
+      <div className='container-profile '>
+        <div className="box-profile flex py-10 items-stretch" style={{maxWidth:'1000px',margin:'auto'}}>
+          <div className="profile-left w-1/4  pr-3">
+                {/* self-stretch */}
             <NavbarProfile />
           </div>
           <div className="profile-right w-3/4 p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700" style={{minHeight:'282px'}}>
@@ -56,8 +59,11 @@ export default function Profile(props) {
             </Switch>
 
           </div>
+
         </div>
       </div>
+      <Footer />
+      
 
 
     </div>

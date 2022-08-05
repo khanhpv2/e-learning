@@ -18,28 +18,28 @@ export default function Home(props) {
         <div>
           <img
             src="./img/slider.png"
-            className="w-full h-full"
+            className="w-full h-full object-cover"
             style={contentStyle}
           />
         </div>
         <div>
           <img
             src="./img/slider2.jpg"
-            className="w-full h-full"
+            className="w-full h-full object-cover"
             style={contentStyle}
           />
         </div>
         <div>
           <img
             src="./img/slider2.webp"
-            className="w-full h-full"
+            className="w-full h-full object-cover "
             style={contentStyle}
           />
         </div>
         <div>
           <img
             src="./img/slider3.jpeg"
-            className="w-full h-full"
+            className="w-full h-full object-cover"
             style={contentStyle}
           />
         </div>

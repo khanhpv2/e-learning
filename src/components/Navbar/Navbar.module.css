@@ -1,4 +1,18 @@
 .abcd {
-    /* background-color: red; */
-    
+    border-width:0px;
+    border:none;
+    outline:none;
+}
+.abcd:hover {
+    color: #401b9c !important
+    /* background-color: red !important; */
+}
+
+.navLogin:hover {
+    color: unset !important;
+    background-color: rgba(0,0,0,.04)
+}
+.navRegister:hover {
+    color: white !important;
+    /* background-color: rgba(0,0,0,.04) */
 }

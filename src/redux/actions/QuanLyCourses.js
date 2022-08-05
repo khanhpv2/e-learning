@@ -58,6 +58,15 @@ export const getarrCourse = (values) => {
         }
     }
 }
+export const searcharrCourse = (values) => {
+    return  (dispatch) => {
+        const action = {
+            type: 'SEARCH_COURSES',
+            searchCourse: values
+        }
+        dispatch(action)
+    }
+}
 
 
 export const deleteCourse = (maKhoaHoc) => {

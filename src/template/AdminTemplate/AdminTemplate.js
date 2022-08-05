@@ -6,15 +6,54 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu } from "antd";
-import React, { useState } from "react";
-import { NavLink, Redirect, Route } from "react-router-dom";
+import React, { Fragment, useState } from "react";
+import { NavLink, Redirect, Route, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { USER_LOGIN } from "../../utils/config";
+import { ACCESSTOKEN, USER_LOGIN } from "../../utils/config";
+import { useEffect } from "react";
+import { DownOutlined } from '@ant-design/icons';
+import { Dropdown,  message, Space } from 'antd';
 
 export const AdminTemplate = (props) => {
   const { Component, ...propsRoute } = props;
+  // const {history} = props
+  const history = useHistory();
+  console.log('admin',props);
   const { Header, Content, Footer, Sider } = Layout;
+  const onClick = ({ key }) => {
+    // message.info(`Click on item ${key}`);
+
+    if (key ==1) {
+      
+      localStorage.removeItem(USER_LOGIN)
+      localStorage.removeItem(ACCESSTOKEN)
+      history.push('/')
+      window.location.reload() 
+  };
+  if (key ==2) {
+    history.push('/profile')
+  }
+  };
+  const menu = (
+    <Menu
+      onClick={onClick}
+      items={[
+        {
+          label: 'Đăng xuất',
+          key: '1',
+      },
+      {
+          label: 'Đi đến trang cá nhân',
+          key: '2',
+      },
+    
+      ]}
+    />
+  );
   const { SubMenu } = Menu;
+  useEffect (()=>{
+    window.scrollTo(0,0)
+  })
   function getItem(label, key, icon, children) {
     return {
       key,
@@ -39,7 +78,7 @@ export const AdminTemplate = (props) => {
     alert("Bạn không có quyền truy cập vào trang này !");
     return <Redirect to="/" />;
   }
-
+  
   return (
     <Route
       exact
@@ -67,10 +106,10 @@ export const AdminTemplate = (props) => {
 
                 <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
                   <Menu.Item key="1" icon={<UserOutlined />}>
-                    <NavLink to="/admin/users">Users</NavLink>
+                    <NavLink to="/admin/users">Người Dùng</NavLink>
                   </Menu.Item>
                   <Menu.Item key="2" icon={<DesktopOutlined />}>
-                    <NavLink to="/admin/courses">Courses</NavLink>
+                    <NavLink to="/admin/courses">Khóa Học</NavLink>
                     {/* <SubMenu key="sub1" icon={<FileOutlined />} title="Films">
                     <Menu.Item key="10" icon={<FileOutlined />}>
                       <NavLink to="/admin/films">Films</NavLink>
@@ -84,12 +123,24 @@ export const AdminTemplate = (props) => {
               </Sider>
 
               <Layout className="site-layout">
-                <Header
-                  className="site-layout-background"
+                <Header className="site-layout-background"
                   style={{
                     padding: 0,
-                  }}
-                />
+                  }}>
+                  
+                  <div className="text-right pr-10 pt-1">
+                      {userLogin ? (<>  <Dropdown overlay={menu}>
+    <a onClick={(e) => ( 
+    e.preventDefault() ) }>
+      <Space style={{color:'white'}}>
+        Hi,{userLogin.hoTen}
+        <DownOutlined />
+      </Space>
+    </a>
+  </Dropdown></>) 
+                      :  <>' '</> }
+                  </div>
+                </Header>
 
                 <Content
                   style={{

@@ -1,9 +1,12 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { Route } from "react-router-dom";
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 export const HomeTemplate = (props) => {
     const {Component,...propsRoute} = props;
+    useEffect (()=>{
+      window.scrollTo(0,0)
+    })
        return (
         <Route
           exact
@@ -12,7 +15,7 @@ export const HomeTemplate = (props) => {
             //{path:'/home', component:Home}
             return (
               <div>
-                <Navbar {...propsRoute} />
+                <Navbar  {...propsRoute} />
                 <Component {...propsRoute} />
                 <Footer {...propsRoute} />
               </div>

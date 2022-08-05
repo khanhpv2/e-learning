@@ -51,6 +51,8 @@ export default function Detail(props) {
                   alt
                   src={detailCourse.hinhAnh}
                   className="w-full rounded-xl h-72 lg:h-[540px] object-cover"
+                  onError={(e) => {
+                    e.target.onError = null; e.target.src = `https:picsum.photos/id/5/50/50`}}
                 />
 
               </div>

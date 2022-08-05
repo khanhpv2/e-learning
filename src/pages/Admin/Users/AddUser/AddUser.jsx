@@ -50,28 +50,29 @@ export default function AddUser(props) {
                         <div className="p-8 bg-white rounded-lg shadow-lg lg:p-12 lg:col-span-3">
                             <form action className="space-y-4" onSubmit={formik.handleSubmit}>
                                 <div>
-                                    <label className="sr-only" >Ho va Ten</label>
-                                    <input className="w-full p-3 text-sm border-gray-200 rounded-lg" placeholder="Ho Va Ten" name="hoTen" onChange={formik.handleChange}/>
+                                    {/* <label className="sr-only" >Họ và tên</label> */}
+                                    {/* <p></p> */}
+                                    <input className="w-full p-3 text-sm border-gray-200 rounded-lg" placeholder="Họ Và Tên" name="hoTen" onChange={formik.handleChange}/>
                                 </div>
                                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                                     <div>
                                         <label className="sr-only" >Tai Khoan</label>
-                                        <input className="w-full p-3 text-sm border-gray-200 rounded-lg" placeholder="Tai Khoan" name="taiKhoan" onChange={formik.handleChange} />
+                                        <input className="w-full p-3 text-sm border-gray-200 rounded-lg" placeholder="Tài Khoản" name="taiKhoan" onChange={formik.handleChange} />
                                     </div>
                                     <div>
                                         <label className="sr-only" htmlFor="phone">Mat Khau</label>
-                                        <input className="w-full p-3 text-sm border-gray-200 rounded-lg" placeholder="Mat Khau" type="password" name="matKhau" onChange={formik.handleChange} />
+                                        <input className="w-full p-3 text-sm border-gray-200 rounded-lg" placeholder="Mật Khẩu" type="password" name="matKhau" onChange={formik.handleChange} />
                                     </div>
                                 </div>
 
                                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                                     <div>
                                         <label className="sr-only" htmlFor="email">Email</label>
-                                        <input className="w-full p-3 text-sm border-gray-200 rounded-lg" placeholder="Email address" type="email" id="email" onChange={formik.handleChange} />
+                                        <input className="w-full p-3 text-sm border-gray-200 rounded-lg" placeholder="Địa Chỉ Email" type="email" id="email" onChange={formik.handleChange} />
                                     </div>
                                     <div>
                                         <label className="sr-only" htmlFor="phone">Phone</label>
-                                        <input className="w-full p-3 text-sm border-gray-200 rounded-lg" placeholder="Phone Number" type="tel" name="soDT" onChange={formik.handleChange} />
+                                        <input className="w-full p-3 text-sm border-gray-200 rounded-lg" placeholder="Số Điện Thoại" type="tel" name="soDT" onChange={formik.handleChange} />
                                     </div>
                                 </div>
                                 <div>
@@ -93,7 +94,7 @@ export default function AddUser(props) {
 
                                 <div className="mt-4">
                                     <button type="submit" className="inline-flex items-center justify-center w-full px-5 py-3 text-white bg-black rounded-lg sm:w-auto">
-                                        <span className="font-medium"> Send Enquiry </span>
+                                        <span className="font-medium"> Thêm người dùng </span>
                                         <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                         </svg>

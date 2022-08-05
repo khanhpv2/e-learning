@@ -101,27 +101,27 @@ export default function AddCourse(props) {
         onValuesChange={onFormLayoutChange}
         size={componentSize}
       >
-        <h3>Them moi phim</h3>
-        <Form.Item label="Form Size" name="size">
+        <h3 style={{fontSize:'25px'}}>Thêm Khóa Học</h3>
+        {/* <Form.Item label="Form Size" name="size">
           <Radio.Group>
             <Radio.Button value="small">Small</Radio.Button>
             <Radio.Button value="default">Default</Radio.Button>
             <Radio.Button value="large">Large</Radio.Button>
           </Radio.Group>
-        </Form.Item>
-        <Form.Item label="Ma Khoa Hoc">
+        </Form.Item> */}
+        <Form.Item label="Mã Khóa Học">
           <Input name="maKhoaHoc" onChange={formik.handleChange} />
         </Form.Item>
-        <Form.Item label="Bi Danh">
+        <Form.Item label="Bí Danh">
           <Input name="biDanh" onChange={formik.handleChange} />
         </Form.Item>
-        <Form.Item label="Ten Khoa Hoc">
+        <Form.Item label="Tên Khoá Học">
           <Input name="tenKhoaHoc" onChange={formik.handleChange} />
         </Form.Item>
-        <Form.Item label="Mo Ta">
+        <Form.Item label="Mô Tả">
           <Input name="moTa" onChange={formik.handleChange} />
         </Form.Item>
-        <Form.Item label="Ma Danh Muc Khoa Hoc">
+        <Form.Item label="Mã Danh Mục Khóa Học">
           <Select name="maDanhMucKhoaHoc" onChange={handleChangeOption}>
             <Select.Option value="BackEnd">Lập trình Backend</Select.Option>
             <Select.Option value="Design">Thiết kế Web</Select.Option>
@@ -133,7 +133,7 @@ export default function AddCourse(props) {
           </Select>
         </Form.Item>
 
-        <Form.Item label="Luot Xem">
+        <Form.Item label="Lượt Xem">
           <InputNumber
             name="luotXem"
             onChange={handleChangeInputNumber("luotXem")}
@@ -141,7 +141,7 @@ export default function AddCourse(props) {
             max={100}
           />
         </Form.Item>
-        <Form.Item label="Danh Gia">
+        <Form.Item label="Đánh Giá">
           <InputNumber
             name="danhGia"
             onChange={handleChangeInputNumber("danhGia")}
@@ -153,7 +153,7 @@ export default function AddCourse(props) {
         {/* <Form.Item label="Ma Nhom">
           <Input name='maNhom' onChange={formik.handleChange} />
         </Form.Item> */}
-        <Form.Item label="Ngay Tao">
+        <Form.Item label="Ngày Tạo">
           <DatePicker
             name="ngayTao"
             format={"DD/MM/YYYY"}
@@ -163,7 +163,7 @@ export default function AddCourse(props) {
         {/* <Form.Item label="Ma Danh Muc Khoa Hoc">
           <Input name='maDanhMucKhoaHoc' onChange={formik.handleChange} />
         </Form.Item> */}
-        <Form.Item label="Hinh Anh">
+        <Form.Item label="Hình Ảnh">
           <input
             type="file"
             onChange={handleChangeFile}
@@ -174,7 +174,7 @@ export default function AddCourse(props) {
         </Form.Item>
         <Form.Item label="Button">
           <button type="submit" className="bg-blue-300 text-white p-2">
-            Button
+            Thêm 
           </button>
         </Form.Item>
       </Form>

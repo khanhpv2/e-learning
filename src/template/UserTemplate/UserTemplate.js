@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Fragment } from "react";
 import { Route } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
@@ -5,6 +6,9 @@ import Navbar from "../../components/Navbar/Navbar";
 
 export const UserTemplate = (props) => {
   const { Component, ...propsRoute } = props;
+  useEffect (()=>{
+    window.scrollTo(0,0)
+  })
   return (
     <Route
       exact

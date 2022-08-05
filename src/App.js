@@ -39,7 +39,7 @@ function App() {
         <HomeTemplate path='/list-danhmuc/:maDanhMuc' exact Component={MaDanhMuc} />
         <UserTemplate path='/register' exact Component={Register} />
         <UserTemplate path='/login' exact={false} Component={Login} />
-        <Route path='/profile' exact={false} component={Profile} />
+        <Route path='/profile'   component={Profile} />
         <Route path='/profiletest' exact component={ProfileTest} />
         <AdminTemplate path='/admin/users' exact Component={Users} />
         <AdminTemplate path='/admin/courses' exact Component={Courses} />
@@ -48,21 +48,9 @@ function App() {
         <AdminTemplate path='/admin/users/addnew' exact Component={AddUser} />
         <AdminTemplate path='/admin/detail-user/:id' exact Component={DetailUser} />
 
-       
 
-
-
-        {/* <Route path='/admin' exact component={AdminTemplate} /> */}
-
-
-
-        {/* <Route path='/subnav' exact component={SubNav} /> */}
-        {/* <Route path='/test' exact component={Test} />  */}
-        {/* <Route path='/abc' exact component={Listcourses} /> */}
-       
 
       
-
       </Switch>
     </Router>
     

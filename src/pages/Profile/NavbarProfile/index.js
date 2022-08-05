@@ -18,14 +18,14 @@ console.log('b',b);
       name: "Khóa Học Ghi danh",
       path: "/profile/attendance",
     },
-    {
-      name: "Khóa Học Của Tôi",
-      path: "/profile/mycourse",
-    },
+    // {
+    //   name: "Khóa Học Của Tôi",
+    //   path: "/profile/mycourse",
+    // },
   ];
 
   return (
-    <div className="navbar-profile text-center p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+    <div className="navbar-profile h-full text-center p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
       <div
         className="image-avatar text-center rounded-full text-center "
         

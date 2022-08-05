@@ -1,5 +1,5 @@
 .abcd {
-    background-color: grey;
+    background-color: white;
     text-align: left;
     top: 54px;
     border: .2px solid #000;
@@ -12,5 +12,7 @@
      border: .2px solid #000; 
 }
 a:hover {
-    color: purple !important;
+    /* color: purple !important; */
+    color: #401b9c !important
+
 }
