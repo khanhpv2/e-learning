@@ -11,40 +11,53 @@ import { http } from '../../../utils/config';
 
 
 export default function Users(props) {
-  // const location = useLocation()
-  // const params = new URLSearchParams(location.search)
-  // const {history} = props
+  
   
 
   const { arrUsers } = useSelector(state => state.usersReducer);
+  console.log('arrUsers',arrUsers);
+  const dataArrUser = arrUsers.map ((user,index)=>{
+      return {
+        key : index,
+        taiKhoan: `${user.taiKhoan}`,
+        hoTen: `${user.hoTen}`,
+        email: `${user.email}`,
+        soDt: `${user.soDt}`,
+        maLoaiNguoiDung: `${user.maLoaiNguoiDung}`
+      }
+  })
+  console.log('dataArrUser',dataArrUser)
   // console.log('propuser',props);
-  const data = arrUsers
+  const data = dataArrUser
   const columns = [
     {
       title: 'STT',
-      dataIndex: '',
-      render: (text, user, index) => {
-        return <>
-          {Number(index)}
-        </>
-      },
+      dataIndex: 'key',
       defaultSortOrder: 'descend',
-      sorter: (a, b) => a.index - b.index,
+      sorter: (a, b) => a.key - b.key,
 
       // specify the condition of filtering result
       // here is that finding the name started with `value`
     },
     {
-      title: 'Tai Khoan',
+      title: 'Tài Khoản',
       dataIndex: 'taiKhoan',
       defaultSortOrder: 'descend',
-      sorter: (a, b) => a.age - b.age,
+      // sorter: (a, b) => a.age - b.age,
     },
     {
-      title: 'Ho va Ten',
+      title: 'Họ và tên',
       dataIndex: 'hoTen',
-      defaultSortOrder: 'descend',
-      sorter: (a, b) => a.age - b.age,
+      // defaultSortOrder: 'descend',
+      sorter: (a, b) => {
+        let hoTenA = a.hoTen.toLowerCase().trim();
+        let hoTenB = b.hoTen.toLowerCase().trim();
+        if (hoTenA > hoTenB) {
+            return 1;
+        }
+        return -1
+    },
+    sortDirections: ['descend', 'ascend'],
     },
     {
       title: 'Email',
@@ -55,27 +68,26 @@ export default function Users(props) {
       dataIndex: 'soDt',
     },
     {
-      title: 'Loai Nguoi Dung',
+      title: 'Loại Người Dùng',
       dataIndex: 'maLoaiNguoiDung',
       filters: [
         {
-          text: 'Hoc Vien',
+          text: 'Học Viên',
           value: 'HV',
         },
         {
-          text: 'Giao Vien',
+          text: 'Giáo Viên',
           value: 'GV',
         },
       ],
-      onFilter: (value, record) => record.address.indexOf(value) === 0,
+      onFilter: (value, record) => record.maLoaiNguoiDung.indexOf(value) === 0,
     },
     {
       title: '',
-      dataIndex: 'taiKhoan',
+      dataIndex: '',
       render: (text, account) => {
 
         return <>
-        {/* <FormEditUser account = {account} /> */}
           <NavLink to={`/admin/detail-user/${account.taiKhoan}`} key={0} className='text-2xl p-2' ><ProfileOutlined /></NavLink>
           <button key={1} className='mr-2 text-2xl p-2' onClick={()=>{
                const action = {
@@ -87,7 +99,7 @@ export default function Users(props) {
           }}>
             <EditOutlined style={{ color: 'blue' }} /></button>
           <button key={2} className='text-2xl' onClick={() => {
-            if (window.confirm('Ban co chac muon xoa tai khoan' + account.taiKhoan)) {
+            if (window.confirm('Bạn có chắc muốn xóa tài khoản' +' '+ account.taiKhoan)) {
               dispatch(deleteAccountUser(account.taiKhoan))
             }
           }}><DeleteOutlined style={{ color: 'red' }} /></button>
@@ -110,7 +122,7 @@ export default function Users(props) {
   }, [])
   const { history } = props
   const onSearch = (value) => {
-    console.log(value)
+    // console.log(value)
     dispatch(searchInfoUsers(value))
   }
 

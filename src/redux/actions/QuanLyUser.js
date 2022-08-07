@@ -106,7 +106,7 @@ export const coursesWaitingApproval = (values) => {
         try {
             let result = await http.post("/api/QuanLyNguoiDung/LayDanhSachKhoaHocChoXetDuyet",values);
             // console.log('values',values)
-            console.log(result.data);
+            // console.log(result.data);
             const action = {
                 type: 'GET_COURSES_APPROVAL',
                 arrCourseWaitingApproval: result.data
@@ -117,6 +117,23 @@ export const coursesWaitingApproval = (values) => {
             console.log(err);
           }
     }
+}
+export const coursesApproved = (values) => {
+  return async (dispatch) => {
+      try {
+          let result = await http.post("/api/QuanLyNguoiDung/LayDanhSachKhoaHocDaXetDuyet",values);
+          // console.log('values',values)
+          // console.log(result.data);
+          const action = {
+              type: 'GET_COURSES_APPROVED',
+              arrCoursesApproved: result.data
+          };
+          dispatch(action)
+          
+        } catch (err) {
+          console.log(err);
+        }
+  }
 }
 
 export const coursesApproval = (values) => {

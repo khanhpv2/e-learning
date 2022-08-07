@@ -9,7 +9,8 @@ import { editInfoUser } from '../../redux/actions/QuanLyUser';
 
 export default function FormEditUser(props) {
   const { stateEditUser, infoEditUser } = useSelector(state => state.editUserReducer)
-  // console.log(infoEditUser)
+  console.log('infoEditUser', infoEditUser)
+  console.log('stateEditUser', stateEditUser);
   //   const [showModal, setShowModal] = useState(false);
   // console.log('a',props.account);
   const formik = useFormik({
@@ -24,23 +25,29 @@ export default function FormEditUser(props) {
       maNhom: "GP01",
     },
 
-    validationSchema: yup.object({
-      taiKhoan: yup.string().required("Yêu cầu nhập dữ liệu"),
-      // matKhau: yup.string().required("Yêu cầu nhập dữ liệu"),
-      hoTen: yup.string().required("Yêu cầu nhập dữ liệu"),
-      soDt: yup
-        .string()
-        .required("Yêu cầu nhập dữ liệu")
-        .matches(/^[0-9]+$/),
-      email: yup
-        .string()
-        .required("Yêu cầu nhập dữ liệu")
-        .email("Không đúng định dạng email"),
-    }),
+    // validationSchema: yup.object({
+    //   taiKhoan: yup.string().required("Yêu cầu nhập dữ liệu"),
+    //   // matKhau: yup.string().required("Yêu cầu nhập dữ liệu"),
+    //   hoTen: yup.string().required("Yêu cầu nhập dữ liệu"),
+    //   soDt: yup
+    //     .string()
+    //     .required("Yêu cầu nhập dữ liệu")
+    //     .matches(/^[0-9]+$/),
+    //   email: yup
+    //     .string()
+    //     .required("Yêu cầu nhập dữ liệu")
+    //     .email("Không đúng định dạng email"),
+    // }),
 
 
     onSubmit: (values) => {
-      console.log('valuess', values)
+      console.log('values', values)
+      const action = {
+        type: 'GET_STATE_POPUP_USER',
+        stateEditUser: false,
+        infoEditUser: {}
+      };
+      dispatch(action)
       dispatch(editInfoUser(values))
     },
   });
@@ -62,10 +69,12 @@ export default function FormEditUser(props) {
                   </h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                    type='button'
                     onClick={() => {
                       const action = {
                         type: 'GET_STATE_POPUP_USER',
-                        stateEditUser: false
+                        stateEditUser: false,
+                        infoEditUser: {}
                       };
                       dispatch(action)
                     }}
@@ -82,22 +91,22 @@ export default function FormEditUser(props) {
 
                   <form className="space-y-4" onSubmit={formik.handleSubmit}>
                     <div>
-                      <label className="" >Ho va Ten</label>
+                      <label className="" >Họ và tên</label>
                       <input className="w-full p-3 text-sm border-gray-200 rounded-lg" placeholder="Ho Va Ten" name="hoTen" value={formik.values.hoTen} onChange={formik.handleChange} />
-                      {formik.touched.hoTen && formik.errors.hoTen ? (
+                      {/* {formik.touched.hoTen && formik.errors.hoTen ? (
                     <p style={{ color: "red" }}>{formik.errors.hoTen}</p>
-                  ) : null}
+                  ) : null} */}
                     </div>
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                       <div>
-                        <label className="" >Tai Khoan</label>
-                        <input className="w-full p-3 text-sm border-gray-200 rounded-lg" disabled={true}  placeholder="Tai Khoan" name="taiKhoan" value={formik.values.taiKhoan} onChange={formik.handleChange} />
-                        {formik.touched.taiKhoan && formik.errors.taiKhoan ? (
+                        <label className="" >Tài Khoản</label>
+                        <input className="w-full p-3 text-sm border-gray-200 rounded-lg" disabled="true" placeholder="Tai Khoan" name="taiKhoan" value={formik.values.taiKhoan} onChange={formik.handleChange} />
+                        {/* {formik.touched.taiKhoan && formik.errors.taiKhoan ? (
                       <p style={{ color: "red" }}>{formik.errors.taiKhoan}</p>
-                    ) : null}
+                    ) : null} */}
                       </div>
                       <div>
-                        <label className="" >Mat Khau</label>
+                        <label className="" >Mật Khẩu</label>
                         <input className="w-full p-3 text-sm border-gray-200 rounded-lg" placeholder="**********" name="matKhau" onChange={formik.handleChange} />
                         {/* {formik.touched.matKhau && formik.errors.matKhau ? (
                     <p style={{ color: "red" }}>{formik.errors.matKhau}</p>
@@ -107,55 +116,56 @@ export default function FormEditUser(props) {
 
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                       <div>
-                        <label className=""  htmlFor="email">Email</label>
-                        <input className="w-full p-3 text-sm border-gray-200 rounded-lg" disable={true} placeholder="Email address" disabled={true} value={formik.values.email} onChange={formik.handleChange} />
+                        <label className=""  >Email</label>
+                        <input className="w-full p-3 text-sm border-gray-200 rounded-lg" disabled="true" placeholder="Email address" value={formik.values.email} onChange={formik.handleChange} />
                       </div>
                       <div>
-                        <label className="" htmlFor="phone">Phone</label>
+                        <label className="" >Phone</label>
                         <input className="w-full p-3 text-sm border-gray-200 rounded-lg" placeholder="Phone Number" name="soDt" value={formik.values.soDt} onChange={formik.handleChange} />
-                        {formik.touched.soDt && formik.errors.soDt ? (
+                        {/* {formik.touched.soDt && formik.errors.soDt ? (
                     <p style={{ color: "red" }}>{formik.errors.soDt}</p>
-                  ) : null}
+                  ) : null} */}
                       </div>
                     </div>
                     <div>
-                      <label className="">Ma Loai Nguoi Dung</label>
+                      <label className="">Mã Loại Người Dùng</label>
                       <select name="maLoaiNguoiDung" className='w-full p-3 text-sm border-gray-200 rounded-lg' value={formik.values.maLoaiNguoiDung} onChange={formik.handleChange} >
                         <option >HV</option>
                         <option >GV</option>
                       </select>
                     </div>
                     <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
-                  <button
-                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="button"
-                    onClick={() => {
-                      {
-                        const action = {
-                          type: 'GET_STATE_POPUP_USER',
-                          stateEditUser: false
-                        };
-                        dispatch(action)
-                      }
-                    }}
-                  >
-                    Đóng
-                  </button>
-                  <button
-                    className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="submit"
-                  onClick={() => {
-                      {const action = {
-                          type: 'GET_STATE_POPUP_USER',
-                          stateEditUser: false
-                      };
-                      dispatch(action)}
+                      <button
+                        className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                        type="button"
+                        onClick={() => {
+                          {
+                            const action = {
+                              type: 'GET_STATE_POPUP_USER',
+                              stateEditUser: false,
+                              infoEditUser: {}
+                            };
+                            dispatch(action)
+                          }
+                        }}
+                      >
+                        Đóng
+                      </button>
+                      <button
+                        className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                        type="submit"
+                      // onClick={() => {
+                      //     {const action = {
+                      //         type: 'GET_STATE_POPUP_USER',
+                      //         stateEditUser: false
+                      //     };
+                      //     dispatch(action)}
 
-                  }}
-                  >
-                    Lưu thay đổi
-                  </button>
-                </div>
+                      // }}
+                      >
+                        Lưu thay đổi
+                      </button>
+                    </div>
                   </form>
 
 
@@ -164,7 +174,7 @@ export default function FormEditUser(props) {
 
 
                 {/*footer*/}
-                
+
               </div>
             </div>
           </div>

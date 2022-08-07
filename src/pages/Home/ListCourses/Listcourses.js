@@ -32,10 +32,10 @@ export default function Listcourses(props) {
   return (
     <div>
       <div className="flex flex-col items-start mx-8  space-y-3 mt-14 mb-8 text-center ">
-        <h2 className="text-4xl  font-bold ">A broad selection of courses</h2>
+        <h2 className="text-4xl  font-bold ">Nhiều lựa chọn các khóa học</h2>
         <h3 className="text-xl ">
-          Choose from 183,000 online video courses with new addtion published
-          every month
+        Chọn từ 183.000 khóa học video trực tuyến với phụ đề mới xuất bản
+          mỗi tháng
         </h3>
         <div className="text-xs  lg:text-xl  flex space-x-4 ml-1 font-bold text-gray-500 cursor-pointer">
           {/* <h3>Python</h3>
@@ -51,18 +51,18 @@ export default function Listcourses(props) {
 
         <div className="text-left w-full border border-gray-300 p-7">
           <h2 className="text-2xl font-bold mb-2 ">
-            Expand your carrer opprtunities with Uedemy
+              Mở rộng cơ hội nghề nghiệp của bạn với Uedemy
           </h2>
           <h3>
-            Take one of Udemy range of Python courses and learn how to code
-            using this incredibly useful language. Its simple syntax and
-            readability makes Python perfect for Flask, Django, data science,
-            and machine learning. You’ll learn how to build everything from
-            games to sites to apps. Choose from a range of courses that will
-            appeal to
+          Tham gia một trong các khóa họ học Python của Udemy và học cách viết code để
+            sử dụng ngôn ngữ vô cùng hữu ích này. Cú pháp đơn giản của nó và
+            tính dễ đọc làm cho Python trở nên hoàn hảo cho Flask, Django, khoa học dữ liệu,
+            và học máy. Bạn sẽ học cách xây dựng mọi thứ từ
+            trò chơi đến trang web đến ứng dụng. Chọn từ một loạt các khóa học sẽ
+            hấp dẫn
           </h3>
           <button className="border border-black font-bold text-sm p-2 mt-4 mb-8">
-            Universe Code
+            Thế Giới Code
           </button>
           <div className="flex flex-wrap ">
             {renderCourses()}

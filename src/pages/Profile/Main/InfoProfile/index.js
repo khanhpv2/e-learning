@@ -11,6 +11,7 @@ import {
 export default function InfoProfile(props) {
   const dispatch = useDispatch();
   const { arrInfo } = useSelector((state) => state.quanlyProfile);
+  console.log('arrInfo',arrInfo);
 
   useEffect(() => {
     dispatch(getInfoUser());

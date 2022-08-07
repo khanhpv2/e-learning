@@ -43,7 +43,7 @@ export const AdminTemplate = (props) => {
           key: '1',
       },
       {
-          label: 'Đi đến trang cá nhân',
+          label: 'Trang cá nhân',
           key: '2',
       },
     

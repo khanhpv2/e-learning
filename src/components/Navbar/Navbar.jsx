@@ -35,10 +35,10 @@ export default function Navbar(props) {
             window.location.reload()
 
         }
-        if (key == '2') {
-            history.push('/profile')
+        // if (key == '2') {
+        //     history.push('/profile')
 
-        }
+        // }
         
         
     };
@@ -51,10 +51,10 @@ export default function Navbar(props) {
                     label: 'Đăng xuất',
                     key: '1',
                 },
-                {
-                    label: 'Trang cá nhân',
-                    key: '2',
-                },
+                // {
+                //     label: 'Trang cá nhân',
+                //     key: '2',
+                // },
               
             ]}
         />
@@ -64,6 +64,7 @@ export default function Navbar(props) {
         setIsShown(current => !current);
     };
     const dispatch = useDispatch();
+    // const history = useHistory()
     const [hoverRef, isHovered] = useHover();
     const { userLogin } = useSelector(state => state.quanLyLogin);
     const formik = useFormik({
@@ -82,7 +83,9 @@ export default function Navbar(props) {
         <div id='header'>
             <div className='flex space-x-4 bg-white h-[74px] shadow-lg text-center justify-between items-center px-4 '>
                 <MenuIcon className="h-6 w-6 md:hidden" />
-                <h2 className='text-3xl'>Udemy</h2>
+                <h2 className='text-3xl cursor-pointer	' onClick={()=>{
+                    history.push('/')
+                }}>Udemy</h2>
                 <button className={`text-sm md:block z-10  relative ${style.abcd}`} ref={hoverRef} style={{ padding: '10px 0' }} >Danh mục
                     <div className='absolute   elementToFadeInAndOut pt-10' style={{ top: '15px', minWidth: '140px', display: isHovered ? 'block' : 'none' }}>
                         <SubNav />
@@ -96,17 +99,23 @@ export default function Navbar(props) {
                 <button onClick={()=>{
                     history.push('/admin/users')
                 }} className='hidden text-sm lg:block'>Quản Trị</button>
+                <button 
+                    onClick={()=>{
+                        history.push("/profile/info-course" )
+                        window.location.reload()
+                    }}
+                     className='hidden text-sm lg:block'>Trang Cá Nhân</button>
                 {/* <NavLink to='/profile' className='hidden text-sm lg:block md:hidden'>Profile</NavLink> */}
                 <div className='flex'>
                     <SearchIcon className='h-6 w-6 text-gray-400 md:hidden' />
                     <ShoppingCartIcon className='h-6 w-6' />
                 </div>
-                <div className='hidden md:flex pr-4 space-x-4 justify-end' >
+                <div className='hidden md:flex pr-4 space-x-4 justify-end' style={{height:'38px'}} >
                     {
                         userLogin.accessToken ? (<> 
-                            <Dropdown overlay={menu}>
-                                <a onClick={(e) => e.preventDefault()}>
-                                    <Space style={{color:'black'}}>
+                            <Dropdown overlay={menu} >
+                                <a  onClick={(e) => e.preventDefault()}>
+                                    <Space style={{color:'black',lineHeight:'38px'}}>
                                     Hi, {userLogin.hoTen}
                                         <DownOutlined />
                                     </Space>

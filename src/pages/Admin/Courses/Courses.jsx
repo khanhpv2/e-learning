@@ -20,7 +20,7 @@ export default function Courses(props) {
             hinhAnh: `${course.hinhAnh}`
         }
     })
-    console.log('dataCourse', dataCourse)
+    // console.log('dataCourse', dataCourse)
     const columns = [
         {
             title: 'Tên Khoá Học',
@@ -102,7 +102,7 @@ export default function Courses(props) {
             }
         },
     ];
-    console.log('arrCourses', arrCourses)
+    // console.log('arrCourses', arrCourses)
 
     const data = dataCourse
 

@@ -1,15 +1,17 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { signUpCourse } from "../../redux/actions/baseService";
 import { getdetailCourse } from "../../redux/actions/QuanLyCourses";
-import { http } from "../../utils/config";
+import { http, USER_LOGIN } from "../../utils/config";
 
 export default function Detail(props) {
   // console.log('props',props.match.params.id);
   // console.log('param',props.match.params.maDanhMuc)
   // console.log('props',props)
 
-
+  const history = useHistory()
   const {detailCourse} = useSelector( state => state.coursesReducer );
   const dispatch = useDispatch();  
   let params = props.match.params.id
@@ -24,16 +26,16 @@ export default function Detail(props) {
     }
 }, [props])
 
-  const handleRegister = async ()=> {
-    try {
-        let result = await http.post('api/QuanLyKhoaHoc/DangKyKhoaHoc',abcd)
-        if (result.status ==200 ) {
-          alert(result.data)
-        }
-    }catch(err) {
-      alert('Đã Đăng Ký Khóa Học Này Rồi')
-    }
-  }
+  // const handleRegister = async ()=> {
+  //   try {
+  //       let result = await http.post('api/QuanLyKhoaHoc/DangKyKhoaHoc',abcd)
+  //       if (result.status ==200 ) {
+  //         alert(result.data)
+  //       }
+  //   }catch(err) {
+  //     alert('Đã Đăng Ký Khóa Học Này Rồi')
+  //   }
+  // }
   return (
     <div>
       <section>
@@ -185,8 +187,16 @@ export default function Detail(props) {
                 <button
                   type="submit"
                   className="w-full px-6 py-3 text-sm font-bold tracking-wide text-white uppercase bg-red-700 rounded"
-                  onClick={()=>{
-                    handleRegister()
+                  onClick={(e)=>{
+                    // handleRegister()
+                    if (localStorage.getItem(USER_LOGIN)) {
+                      e.preventDefault()
+                      dispatch(signUpCourse(abcd))
+                    } else {
+                      alert('Bạn Phải Đăng Nhập')
+                      history.push('/login')
+                    }
+                    
                   }}
                 >
                   Đăng ký

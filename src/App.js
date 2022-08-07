@@ -20,7 +20,6 @@ import Users from './pages/Admin/Users/Users';
 import Courses from './pages/Admin/Courses/Courses';
 import AddCourse from './pages/Admin/Courses/AddCourse/AddCourse';
 import AddUser from './pages/Admin/Users/AddUser/AddUser';
-import EditUser from './pages/Admin/Users/EditUser/EditUser';
 import FormEditUser from './components/Modals/FormEditUser';
 import DetailUser from './pages/Admin/Users/DetailUser/DetailUser';
 import EditCourse from './pages/Admin/Courses/EditCourse/EditCourse';

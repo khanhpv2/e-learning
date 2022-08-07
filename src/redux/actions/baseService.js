@@ -15,6 +15,18 @@ export const signUp = (values) => {
           }
     }
 }
+export const signUpCourse = (values) => {
+  return async (dispatch) => {
+    try {
+      let result = await http.post('api/QuanLyKhoaHoc/DangKyKhoaHoc',values)
+      if (result.status ==200 ) {
+        alert(result.data)
+      }
+  }catch(err) {
+    alert('Đã Đăng Ký Khóa Học Này Rồi')
+  }
+  }
+}
 export const signIn = (values) => {
     return async (dispatch) => {
         try {

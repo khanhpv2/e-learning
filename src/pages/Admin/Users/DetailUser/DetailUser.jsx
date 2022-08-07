@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import { Button, Checkbox, Divider, Tabs } from 'antd';
 import ManageCourseUser from './ManageCourseUser/ManageCourseUser';
+import CoursesApproval from './ManageCourseUser/CoursesApproval';
 export default function DetailUser(props) {
     //    const [key,setKey] = useState('a'); 
 
@@ -8,7 +9,7 @@ export default function DetailUser(props) {
     //     console.log('value', value.target.value)
     //     setKey(value.target.value);
     // }
-    console.log('props',props.match.params.id);
+    // console.log('props',props.match.params.id);
     let param = props.match.params.id
     const { TabPane } = Tabs;
     const CheckboxGroup = Checkbox.Group;
@@ -40,7 +41,7 @@ export default function DetailUser(props) {
                     <ManageCourseUser param={param} />
                 </TabPane>
                 <TabPane tab="DANH SÁCH KHÓA HỌC ĐÃ GHI DANH" key="2">
-                    Content of tab 2
+                    <CoursesApproval param={param} />
                 </TabPane>
                 
             </Tabs>

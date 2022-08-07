@@ -27,7 +27,7 @@ export default function Course({course, index}) {
                     <p className='text-xs pl-4' style={{color:'black'}}>Lượt xem: {course?.luotXem} </p>
                 </div>
                 <div className='flex space-x-4 items-center'>
-                    <h3 className='text-black font-bold'>Price:  19$</h3>
+                    <h3 className='text-black font-bold'>Giá :  19$</h3>
                     {/* <h3 className='text-gray-800 text-sm line-through'>10$</h3> */}
                 </div>  
             </div>

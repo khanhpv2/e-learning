@@ -4,11 +4,11 @@ import { CheckCircleOutlined, CloseOutlined } from '@ant-design/icons';
 import { useLocation } from 'react-router-dom';
 import { http } from '../../../../../utils/config';
 import { useDispatch, useSelector } from 'react-redux';
-import { coursesApproval, coursesWaitingApproval } from '../../../../../redux/actions/QuanLyUser';
+import { coursesApproval, coursesApproved, coursesWaitingApproval } from '../../../../../redux/actions/QuanLyUser';
 import { Button, Modal } from 'antd';
-export default function ManageCourseUser(props) {
+export default function CoursesApproval(props) {
     const {param} = props
-    const {arrCourseWaitingApproval} = useSelector( state => state.quanlyProfile)
+    const {arrCoursesApproved} = useSelector( state => state.quanlyProfile)
     
     const countDown = () => {
         let secondsToGo = 2;
@@ -35,7 +35,7 @@ export default function ManageCourseUser(props) {
     // console.log(value)  
     const dispatch = useDispatch();
     useEffect (  ()=>{ 
-        dispatch(coursesWaitingApproval(value))
+        dispatch(coursesApproved(value))
       },[])
      
     const columns = [
@@ -67,34 +67,11 @@ export default function ManageCourseUser(props) {
             </>
           }
         },
-        {
-            title: '',
-            dataIndex: 'address',
-            render: (text, course, index) => {
-                return <>
-                    <button className='mr-2 text-2xl p-2' style={{color:'green'}} onClick={()=>{
-                        let courseUser ={
-                            maKhoaHoc: course.maKhoaHoc,
-                            taiKhoan: param
-                        }
-                        dispatch(coursesApproval(courseUser))
-                        // alert('Ghi Danh Thanh Cong')
-                        countDown();
-                        window.location.reload();
-                        // console.log('button',value);
-                        dispatch(coursesWaitingApproval(value))
-
-                        
-                    }} ><CheckCircleOutlined /></button>
-                    <button style={{color:'red'}} className='text-2xl'><CloseOutlined /></button>
-                </>
-              },
-        },
       ];
 
 
       
-      const data = arrCourseWaitingApproval
+      const data = arrCoursesApproved
       
       const onChange = (pagination, filters, sorter, extra) => {
         console.log('params', pagination, filters, sorter, extra);

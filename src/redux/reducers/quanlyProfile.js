@@ -3,6 +3,7 @@ const stateDefault = {
     arrInfo: [],
     arrCourseAttend: [],
     arrCourseWaitingApproval: [],
+    arrCoursesApproved:[]
 }
 
 export const quanlyProfile = (state = stateDefault,action) => {
@@ -17,6 +18,10 @@ export const quanlyProfile = (state = stateDefault,action) => {
         }
         case 'GET_COURSES_APPROVAL': {
             state.arrCourseWaitingApproval = action.arrCourseWaitingApproval;
+            return {...state}
+        }
+        case 'GET_COURSES_APPROVED': {
+            state.arrCoursesApproved = action.arrCoursesApproved;
             return {...state}
         }
 

@@ -25,6 +25,7 @@ export default function EditCourse(props) {
   const params = props.match.params.id
   
   const {detailCourse} = useSelector (state => state.coursesReducer)
+  console.log('detailCourse',detailCourse);
 
   let c  =   detailCourse.danhMucKhoaHoc;
   let d = {...c}
@@ -33,7 +34,7 @@ export default function EditCourse(props) {
   let b = detailCourse.ngayTao
 
   console.log(detailCourse)
-  useEffect ( async ()=>{ 
+  useEffect ( ()=>{ 
     dispatch(getdetailCourse(params))
   },[])
 
@@ -42,7 +43,7 @@ export default function EditCourse(props) {
   };
   const { userLogin } = useSelector((state) => state.quanLyLogin);
   let a = detailCourse.hinhAnh
-  const [img, setImg] = useState(a);
+  const [img, setImg] = useState('');
 //   console.log(img)
   const dispatch = useDispatch();
   const formik = useFormik({
@@ -63,7 +64,7 @@ export default function EditCourse(props) {
     },
     
     // detailCourse.danhMucKhoaHoc.maDanhMucKhoahoc
-    onSubmit: async (values) => {
+    onSubmit:  (values) => {
       console.log("values", values);
 
       let formData = new FormData();
@@ -126,13 +127,7 @@ export default function EditCourse(props) {
         size={componentSize}
       >
         <h3 style={{fontSize:'25px'}}>Chỉnh Sửa Khóa Học</h3>
-        {/* <Form.Item label="Form Size" name="size">
-          <Radio.Group>
-            <Radio.Button value="small">Small</Radio.Button>
-            <Radio.Button value="default">Default</Radio.Button>
-            <Radio.Button value="large">Large</Radio.Button>
-          </Radio.Group>
-        </Form.Item> */}
+       
         <Form.Item label="Mã Khoá Học">
           <Input name="maKhoaHoc" onChange={formik.handleChange} value={formik.values.maKhoaHoc} />
         </Form.Item>
@@ -197,7 +192,7 @@ export default function EditCourse(props) {
             accept="image/png, image/jpeg, image/jpg"
           />
           <br />
-          <img width={100} height={100} src={img} alt="..." />
+          <img width={100} height={100} src={img === '' ? detailCourse.hinhAnh : img} alt="..." />
         </Form.Item>
         <Form.Item label="Button">
           <button type="submit" className="bg-blue-300 text-white p-2">
