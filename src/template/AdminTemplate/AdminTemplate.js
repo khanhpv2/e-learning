@@ -18,7 +18,7 @@ export const AdminTemplate = (props) => {
   const { Component, ...propsRoute } = props;
   // const {history} = props
   const history = useHistory();
-  console.log('admin',props);
+  // console.log('admin',props);
   const { Header, Content, Footer, Sider } = Layout;
   const onClick = ({ key }) => {
     // message.info(`Click on item ${key}`);
@@ -68,7 +68,7 @@ export const AdminTemplate = (props) => {
   // ];
   const [collapsed, setCollapsed] = useState(false);
   const { userLogin } = useSelector((state) => state.quanLyLogin);
-  console.log("userLogin", userLogin);
+  // console.log("userLogin", userLogin);
   if (!localStorage.getItem(USER_LOGIN)) {
     alert("Bạn không có quyền truy cập vào trang này !");
     return <Redirect to="/" />;

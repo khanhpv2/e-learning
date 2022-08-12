@@ -23,6 +23,7 @@ import AddUser from './pages/Admin/Users/AddUser/AddUser';
 import FormEditUser from './components/Modals/FormEditUser';
 import DetailUser from './pages/Admin/Users/DetailUser/DetailUser';
 import EditCourse from './pages/Admin/Courses/EditCourse/EditCourse';
+import TestCourse from './components/TestCourse/TestCourse';
 
 
 export const history = createBrowserHistory();
@@ -45,11 +46,9 @@ function App() {
         <AdminTemplate path='/admin/courses/addnew' exact Component={AddCourse} />
         <AdminTemplate path='/admin/courses/edit/:id' exact Component={EditCourse} />
         <AdminTemplate path='/admin/users/addnew' exact Component={AddUser} />
-        <AdminTemplate path='/admin/detail-user/:id' exact Component={DetailUser} />
+        <AdminTemplate path='/admin/detail-user/:id' exact Component={DetailUser} />  
+        <Route path='/testcourse' exact component={TestCourse} />
 
-
-
-      
       </Switch>
     </Router>
     

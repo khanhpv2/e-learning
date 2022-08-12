@@ -93,7 +93,7 @@ export default function Register(props) {
        ) : null}
         
         <div className="border border-grey-light p-3 rounded mb-4">
-          <label>Ma nhom:</label>
+          <label>Mã Nhóm :</label>
           <select name="maNhom"   onChange={formik.handleChange}>
             <option >GP01</option>
             <option >GP02</option>
@@ -114,7 +114,7 @@ export default function Register(props) {
           type="submit"
           className="w-full text-center py-3 rounded bg-lime-400 text-white hover:bg-green-dark focus:outline-none my-1"
         >
-          Create Account
+          Tạo Tài Khoản
         </button>
       </form>
     </div>

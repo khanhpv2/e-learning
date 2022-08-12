@@ -25,7 +25,7 @@ export default function EditCourse(props) {
   const params = props.match.params.id
   
   const {detailCourse} = useSelector (state => state.coursesReducer)
-  console.log('detailCourse',detailCourse);
+  // console.log('detailCourse',detailCourse);
 
   let c  =   detailCourse.danhMucKhoaHoc;
   let d = {...c}
@@ -33,7 +33,7 @@ export default function EditCourse(props) {
 
   let b = detailCourse.ngayTao
 
-  console.log(detailCourse)
+  // console.log(detailCourse)
   useEffect ( ()=>{ 
     dispatch(getdetailCourse(params))
   },[])

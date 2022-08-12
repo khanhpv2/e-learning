@@ -9,8 +9,8 @@ import { editInfoUser } from '../../redux/actions/QuanLyUser';
 
 export default function FormEditUser(props) {
   const { stateEditUser, infoEditUser } = useSelector(state => state.editUserReducer)
-  console.log('infoEditUser', infoEditUser)
-  console.log('stateEditUser', stateEditUser);
+  // console.log('infoEditUser', infoEditUser)
+  // console.log('stateEditUser', stateEditUser);
   //   const [showModal, setShowModal] = useState(false);
   // console.log('a',props.account);
   const formik = useFormik({
@@ -41,7 +41,7 @@ export default function FormEditUser(props) {
 
 
     onSubmit: (values) => {
-      console.log('values', values)
+      // console.log('values', values)
       const action = {
         type: 'GET_STATE_POPUP_USER',
         stateEditUser: false,

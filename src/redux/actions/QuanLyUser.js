@@ -9,7 +9,7 @@ export const getArrInfoUser = (maNhom = 'GP01') => {
                 type: 'GET_USERS',
                 usersReducer: result.data
             };
-            console.log(result)
+            // console.log(result)
             dispatch(action)
         } catch (err) {
             console.log(err)

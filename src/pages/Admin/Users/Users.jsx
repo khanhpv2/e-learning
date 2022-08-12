@@ -15,7 +15,7 @@ export default function Users(props) {
   
 
   const { arrUsers } = useSelector(state => state.usersReducer);
-  console.log('arrUsers',arrUsers);
+  // console.log('arrUsers',arrUsers);
   const dataArrUser = arrUsers.map ((user,index)=>{
       return {
         key : index,
@@ -26,7 +26,7 @@ export default function Users(props) {
         maLoaiNguoiDung: `${user.maLoaiNguoiDung}`
       }
   })
-  console.log('dataArrUser',dataArrUser)
+  // console.log('dataArrUser',dataArrUser)
   // console.log('propuser',props);
   const data = dataArrUser
   const columns = [
