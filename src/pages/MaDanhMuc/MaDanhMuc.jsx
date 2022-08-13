@@ -6,6 +6,8 @@ import Course from '../../components/Course/Course';
 export default function MaDanhMuc(props) {
 
     const { arrDanhMuc } = useSelector(state => state.coursesReducer);
+    // console.log('props',props);
+    // const {tenDanhMuc = {props.tenDanhMuc}
     const [value, setValue] = useState();
     const dispatch = useDispatch();
     // console.log('params',props.match.params.maDanhMuc)
@@ -46,6 +48,7 @@ export default function MaDanhMuc(props) {
         <div >
             {/* grid grid-cols-4 container mx-auto lg:flex-nowrap */}
             <div className="">
+                <h1></h1>
                 <div className='flex flex-wrap border border-gray-300 p-10'>
                     {renderDanhMuc()}
                 </div>

@@ -1,14 +1,19 @@
 import React from 'react'
 import InfoProfile from './Main/InfoProfile';
 import NavbarProfile from './NavbarProfile';
-import { Route, Switch, useLocation } from "react-router-dom";
+import { Redirect, Route, Switch, useLocation } from "react-router-dom";
 import Attendance from './Main/Attendance';
 import MyCourse from './Main/MyCourse';
 import Footer from '../../components/Footer/Footer';
 import Navbar from '../../components/Navbar/Navbar';
+import { ACCESSTOKEN } from '../../utils/config';
 export default function Profile(props) {
   console.log('props',props);
   const location =  useLocation();
+  if (!localStorage.getItem(ACCESSTOKEN)) {
+    alert("Bạn chưa đăng nhập");
+    return <Redirect to="/login" />;
+  }
   const routes = [
     {
       path: '/profile/info-course',

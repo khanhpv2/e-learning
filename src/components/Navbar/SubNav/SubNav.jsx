@@ -8,6 +8,7 @@ import style from './SubNav.module.css'
 export default function SubNav(props) {
 
   const {arrMenu} = useSelector( state => state.subNavReducer );
+  // console.log('arrMenu',arrMenu);
 
   const dispatch = useDispatch();  
 
@@ -26,7 +27,7 @@ export default function SubNav(props) {
   const renderMenu = () => {
       return arrMenu.map((item,index)=>{
         // console.log('item',item);
-        return  <div key={index}>
+        return  <div key={index} tenDanhMuc={item.tenDanhMuc}>
         <NavLink to={`/list-danhmuc/${item.maDanhMuc}`} className={style.subNav} >{item.tenDanhMuc} </NavLink>
         </div>
       })

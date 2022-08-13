@@ -1,17 +1,18 @@
 import React from 'react'
 import { useFormik } from 'formik';
 import * as yup from 'yup'
-import { http, USER_LOGIN } from "../../utils/config";
+import { ACCESSTOKEN, http, USER_LOGIN } from "../../utils/config";
 import {useSelector,useDispatch} from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { signIn } from '../../redux/actions/baseService';
+import { useEffect } from 'react';
 
 export default function Login(props) {
 
   
   const dispatch = useDispatch()
   const {userLogin} = useSelector (state => state.quanLyLogin)
-  
+
   // console.log('userLogin',userLogin)
   const formik = useFormik({
     initialValues: {
@@ -33,10 +34,11 @@ export default function Login(props) {
       dispatch(signIn(values))
     },
   });
-  if (localStorage.getItem(USER_LOGIN)) {
-    alert("Bạn đã đăng nhập rồi !");
+  if (userLogin?.accessToken) {
+    // alert("userLogin?.accessToken",userLogin?.accessToken);
     return <Redirect to="/" />;
   }
+
   return (
     <div>
        <form onSubmit={formik.handleSubmit} >

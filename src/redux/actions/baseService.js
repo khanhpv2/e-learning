@@ -36,7 +36,8 @@ export const signIn = (values) => {
               const action = {
                 type:'USER_LOGIN',
                 userLogin: result.data
-              }; 
+              };
+                // window.location.reload() 
                 dispatch(action)
             }
           } catch (err) {

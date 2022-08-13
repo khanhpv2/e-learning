@@ -34,16 +34,16 @@ export default function Course({course, index}) {
             </div> */}
             
             <div className="">
-                <div className=" mx-4">
+                <div className=" mx-4"  >
                     <div className="w-full p-4">
-                        <a  className="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
+                        <a style={{minHeight:'514px'}} className="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
                             <div className="relative pb-48 overflow-hidden">
                                 <img className="absolute inset-0 h-full w-full object-cover" onError={()=>{setisError(true)}} src={!isError ? course?.hinhAnh : `https:picsum.photos/id/${index}/50/50`} alt="..." />
                             </div>
-                            <div className="p-4">
+                            <div className="p-4" style={{minHeight:'215px'}} >
                                 
                                 <h2 className="mt-2 mb-2  font-bold">{course.tenKhoaHoc.toUpperCase()}</h2>
-                                <p className="text-sm">{ course.moTa.length > 100 ? course.moTa.substr(0,90) + '...' : course.moTa}</p>
+                                <p className="text-sm" >{ course.moTa.length > 100 ? course.moTa.substr(0,90) + '...' : course.moTa}</p>
                                 <div className="mt-3 flex items-center">
                                     <span className="text-sm font-semibold">Giá</span>&nbsp;<span className="font-bold text-xl">45,00</span>&nbsp;<span className="text-sm font-semibold">€</span>
                                 </div>

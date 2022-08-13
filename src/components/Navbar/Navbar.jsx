@@ -101,8 +101,8 @@ export default function Navbar(props) {
                 }} className='hidden text-sm lg:block'>Quản Trị</button>
                 <button 
                     onClick={()=>{
-                        history.push("/profile/info-course" )
-                        window.location.reload()
+                        history.push("/profile" )
+                        // window.location.reload()
                     }}
                      className='hidden text-sm lg:block'>Trang Cá Nhân</button>
                 {/* <NavLink to='/profile' className='hidden text-sm lg:block md:hidden'>Profile</NavLink> */}
