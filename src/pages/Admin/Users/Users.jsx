@@ -123,7 +123,12 @@ export default function Users(props) {
   const { history } = props
   const onSearch = (value) => {
     // console.log(value)
-    dispatch(searchInfoUsers(value))
+    if (value != '') {
+      dispatch(searchInfoUsers(value))
+    } else {
+    dispatch(getArrInfoUser())
+
+    }
   }
 
   return (
