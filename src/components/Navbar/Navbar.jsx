@@ -88,9 +88,15 @@ export default function Navbar(props) {
         <div id='header'>
             <div className='flex space-x-4 bg-white h-[74px] shadow-lg text-center justify-between items-center px-4 '>
                 <MenuIcon className="h-6 w-6 md:hidden" />
-                <h2 className='text-3xl cursor-pointer	' onClick={()=>{
-                    history.push('/')
-                }}>Udemy</h2>
+                <h2 className='text-3xl cursor-pointe'> 
+                <NavLink to="/">
+                  <img
+                    style={{width:'100px',height:'40px'}}
+                    src="https://www.udemy.com/staticx/udemy/images/v7/logo-udemy.svg"
+                    alt="..."
+                  />
+                  </NavLink>
+                </h2>
                 <button className={`text-sm md:block z-10  relative ${style.abcd}`} ref={hoverRef} style={{ padding: '10px 0' }} >Danh mục
                     <div className='absolute   elementToFadeInAndOut pt-10' style={{ top: '15px', minWidth: '140px', display: isHovered ? 'block' : 'none' }}>
                         <SubNav />

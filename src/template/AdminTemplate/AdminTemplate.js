@@ -98,10 +98,14 @@ export const AdminTemplate = (props) => {
                 onCollapse={(value) => setCollapsed(value)}
               >
                 <div className="logo p-5">
+                  <NavLink to="/">
                   <img
-                    src="https://cyberlearn.vn/wp-content/uploads/2020/03/cyberlearn-min-new-opt2.png"
+                    style={{width:'160px',height:'45px',backgroundColor:'#ffeb3b'}}
+                    src="https://www.udemy.com/staticx/udemy/images/v7/logo-udemy.svg"
                     alt="..."
                   />
+                  </NavLink>
+
                 </div>
 
                 <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
