@@ -14,7 +14,7 @@ const contentStyle = {
 export default function Home(props) {
   return (
     <div>
-      <Carousel style={{marginLeft:'32px',marginRight:'32px'}}>
+      <Carousel autoplay style={{marginLeft:'32px',marginRight:'32px'}}>
         <div>
           <img
             src="./img/slider.png"
