@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Table } from 'antd';
 import { AudioOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Input, Space } from 'antd';
@@ -8,19 +8,40 @@ import { http } from '../../../utils/config';
 import { NavLink } from 'react-router-dom';
 import { deleteCourse, getarrCourse, searchCourse } from '../../../redux/actions/QuanLyCourses';
 export default function Courses(props) {
-    // const {arrCourses} = useSelector ( state => state.coursesReducer)
+
     const { arrCourses } = useSelector(state => state.coursesReducer);
-    const dataCourse = arrCourses.map((course, index) => {
-        return {
-            key: index,
-            tenDanhMuc: `${course.danhMucKhoaHoc.tenDanhMucKhoaHoc}`,
-            maDanhMuc: `${course.danhMucKhoaHoc.maDanhMucKhoahoc}`,
-            tenKhoaHoc: `${course.tenKhoaHoc}`,
-            maKhoaHoc: `${course.maKhoaHoc}`,
-            hinhAnh: `${course.hinhAnh}`
-        }
-    })
-    // console.log('dataCourse', dataCourse)
+    console.log('arrCourses',arrCourses);
+    // const arrCourses1 = [...arrCourses]
+
+    const [courseSearch, setCourseSearch] = useState("")
+    // console.log('courseSearch', courseSearch);
+
+    const handleArrCourse = (arr) => {
+        return arr.map((course, index) => {
+            return {
+                key: index,
+                tenDanhMuc: `${course.danhMucKhoaHoc.tenDanhMucKhoaHoc}`,
+                maDanhMuc: `${course.danhMucKhoaHoc.maDanhMucKhoahoc}`,
+                tenKhoaHoc: `${course.tenKhoaHoc}`,
+                maKhoaHoc: `${course.maKhoaHoc}`,
+                hinhAnh: `${course.hinhAnh}`
+            }
+        })
+    }
+
+    // const dataCourse = arrCourses.map((course, index) => {
+    //     return {
+    //         key: index,
+    //         tenDanhMuc: `${course.danhMucKhoaHoc.tenDanhMucKhoaHoc}`,
+    //         maDanhMuc: `${course.danhMucKhoaHoc.maDanhMucKhoahoc}`,
+    //         tenKhoaHoc: `${course.tenKhoaHoc}`,
+    //         maKhoaHoc: `${course.maKhoaHoc}`,
+    //         hinhAnh: `${course.hinhAnh}`
+    //     }
+    // })
+    // const data = dataCourse
+
+
     const columns = [
         {
             title: 'Tên Khoá Học',
@@ -48,7 +69,7 @@ export default function Courses(props) {
             dataIndex: 'hinhAnh',
             render: (text, course, index) => {
                 return <>
-                    <img src={course.hinhAnh} width={50} height={50} onError={(e) => {
+                    <img key={index} src={course.hinhAnh} width={50} height={50} onError={(e) => {
                         e.target.onError = null; e.target.src = `https:picsum.photos/id/${index}/50/50`
                     }} />
                 </>
@@ -57,11 +78,6 @@ export default function Courses(props) {
         {
             title: 'Danh Mục Khoá Học',
             dataIndex: 'maDanhMuc',
-            // render: (text, course, index) => {
-            //     return <>
-            //         <p>{course.danhMucKhoaHoc.maDanhMucKhoahoc} </p>
-            //     </>
-            // },
             filters: [
                 {
                     text: 'Lập Trình Front End',
@@ -102,9 +118,8 @@ export default function Courses(props) {
             }
         },
     ];
-    // console.log('arrCourses', arrCourses)
 
-    const data = dataCourse
+
 
     const onChange = (pagination, filters, sorter, extra) => {
         console.log('params', pagination, filters, sorter, extra);
@@ -121,18 +136,28 @@ export default function Courses(props) {
     const onSearch = (value) => {
         console.log(value)
         // dispatch(searchCourse(value))
-        const action = {
-            type: 'SEARCH_COURSES',
-            searchCourse: value
+        // const action = {
+        //     type: 'SEARCH_COURSES',
+        //     searchCourse: value
+        // }
+        // dispatch(action)
+        if (value != '') {
+            let result = arrCourses.filter(course => course.tenKhoaHoc.toLowerCase().includes(value) === true);
+            setCourseSearch( handleArrCourse(result)  )
+        } else {
+            setCourseSearch(handleArrCourse(arrCourses))
         }
-        dispatch(action)
     }
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getarrCourse())
+        // setCourseSearch()
     }, [])
+    useEffect(() => {
+        setCourseSearch(handleArrCourse(arrCourses))
+    }, [arrCourses])
     // console.log('props',props)
     const { history } = props
     return (
@@ -149,7 +174,7 @@ export default function Courses(props) {
                 onSearch={onSearch}
                 className='mb-5'
             />
-            <Table columns={columns} dataSource={data} onChange={onChange} />
+            <Table columns={columns} dataSource={courseSearch}  onChange={onChange} />
         </div>
     )
 }

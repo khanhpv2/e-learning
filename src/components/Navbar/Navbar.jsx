@@ -16,7 +16,7 @@ import useHover from '../../CustomHook/useHover';
 import { DownOutlined } from '@ant-design/icons';
 import { Dropdown, Menu, message, Space } from 'antd';
 import { ACCESSTOKEN, USER_LOGIN } from '../../utils/config'
-import { searcharrCourse } from '../../redux/actions/QuanLyCourses'
+import { getarrCourse, searcharrCourse } from '../../redux/actions/QuanLyCourses'
 
 
 export default function Navbar(props) {
@@ -75,7 +75,12 @@ export default function Navbar(props) {
         onSubmit: async (values) => {
     
           console.log('value',values.searchCourse)
-          dispatch(searcharrCourse(values.searchCourse))
+          if (values.searchCourse != '') {
+              dispatch(searcharrCourse(values.searchCourse.trim()))
+          } else {
+            dispatch(getarrCourse())
+          }
+
         //   dispatch(signIn(values))
         },
       });

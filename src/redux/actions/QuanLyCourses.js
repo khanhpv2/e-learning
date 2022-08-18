@@ -44,10 +44,10 @@ export const getdetailCourse = (values) => {
         }
     }
 }
-export const getarrCourse = (values) => {
+export const getarrCourse = (manhom='GP01') => {
     return async (dispatch) => {
         try {
-            let result = await http.get('/api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP01');
+            let result = await http.get(`/api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=${manhom}`);
             const action = {
                 type: 'GET_COURSES',
                 arrCourses: result.data
@@ -58,13 +58,21 @@ export const getarrCourse = (values) => {
         }
     }
 }
-export const searcharrCourse = (values) => {
-    return  (dispatch) => {
-        const action = {
-            type: 'SEARCH_COURSES',
-            searchCourse: values
+export const searcharrCourse = (values,manhom='GP01') => {
+    return async (dispatch) => {
+
+        try {
+            let result = await http.get(
+            `https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${values}&MaNhom=${manhom}`);
+            const action = {
+                type: 'SEARCH_COURSES',
+                searchCourse: result.data
+            };
+            // console.log('result',result);
+            dispatch(action)
+        } catch (err) {
+            console.log(err)
         }
-        dispatch(action)
     }
 }
 

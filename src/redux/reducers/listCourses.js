@@ -19,13 +19,8 @@ export const coursesReducer = (state = stateDefault,action) => {
             return {...state}
         }
         case 'SEARCH_COURSES': {
-
-            let info = action.searchCourse.toLowerCase();
-            if (info != '') {
-                let result = state.arrCourses.filter (course => course.tenKhoaHoc.toLowerCase().includes(info) === true);
-                state.arrCourses = [...result];
-                return {...state}
-            }
+            state.arrCourses = action.searchCourse;
+            return {...state}
         }
 
         default : return state
