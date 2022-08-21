@@ -2,17 +2,18 @@
     background-color: white;
     text-align: left;
     top: 54px;
-    border: .2px solid #000;
+    /* border: .2px solid #000; */
 }
 .subNav {
      display: block;
      color: black !important; 
-     padding-top:10px;
-     padding-bottom: 10px;
-     border: .2px solid #000; 
+     padding:10px;
+     margin: 0 10px;
+     /* border: .2px solid #000;  */
 }
 a:hover {
     /* color: purple !important; */
-    color: #401b9c !important
+    color: #401b9c !important;
+    background-color: gray;
 
 }

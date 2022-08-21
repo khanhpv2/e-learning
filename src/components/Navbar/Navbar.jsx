@@ -98,7 +98,7 @@ export default function Navbar(props) {
                   </NavLink>
                 </h2>
                 <button className={`text-sm md:block z-10  relative ${style.abcd}`} ref={hoverRef} style={{ padding: '10px 0' }} >Danh mục
-                    <div className='absolute   elementToFadeInAndOut pt-10' style={{ top: '15px', minWidth: '140px', display: isHovered ? 'block' : 'none' }}>
+                    <div className='absolute   elementToFadeInAndOut pt-10' style={{ top: '15px', minWidth: '200px', display: isHovered ? 'block' : 'none' }}>
                         <SubNav />
                     </div>
                 </button>
