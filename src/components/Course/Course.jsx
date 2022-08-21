@@ -38,7 +38,7 @@ export default function Course({course, index}) {
                     <div className="w-full p-4">
                         <a style={{minHeight:'514px'}} className="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
                             <div className="relative pb-48 overflow-hidden">
-                                <img className="absolute inset-0 h-full w-full object-cover" onError={()=>{setisError(true)}} src={!isError ? course?.hinhAnh : `https:picsum.photos/id/${index}/50/50`} alt="..." />
+                                <img className="absolute inset-0 h-full w-full object-cover" onError={()=>{setisError(true)}} src={!isError ? course?.hinhAnh : `https://picsum.photos/id/${index}/50/50`} alt="..." />
                             </div>
                             <div className="p-4" style={{minHeight:'215px'}} >
                                 
