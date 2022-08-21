@@ -70,7 +70,7 @@ export default function Courses(props) {
             render: (text, course, index) => {
                 return <>
                     <img key={index} src={course.hinhAnh} width={50} height={50} onError={(e) => {
-                        e.target.onError = null; e.target.src = `https:picsum.photos/id/${index}/50/50`
+                        e.target.onError = null; e.target.src = `https://picsum.photos/id/${index}/50/50`
                     }} />
                 </>
             }
