@@ -26,16 +26,7 @@ export default function Detail(props) {
     }
 }, [props])
 
-  // const handleRegister = async ()=> {
-  //   try {
-  //       let result = await http.post('api/QuanLyKhoaHoc/DangKyKhoaHoc',abcd)
-  //       if (result.status ==200 ) {
-  //         alert(result.data)
-  //       }
-  //   }catch(err) {
-  //     alert('Đã Đăng Ký Khóa Học Này Rồi')
-  //   }
-  // }
+  
   return (
     <div>
       <section>
@@ -58,119 +49,11 @@ export default function Detail(props) {
                 />
 
               </div>
-              {/* <ul className="flex gap-1 mt-1">
-                <li>
-                  <img
-                    className="object-cover w-16 h-16 rounded-md"
-                    src="../../photos/tee-green-hanger-2.png"
-                    alt
-                  />
-                </li>
-                <li>
-                  <img
-                    className="object-cover w-16 h-16 rounded-md"
-                    src="../../photos/tee-green-hanger-3.png"
-                    alt
-                  />
-                </li>
-                <li>
-                  <img
-                    className="object-cover w-16 h-16 rounded-md"
-                    src="../../photos/tee-green-person.png"
-                    alt
-                  />
-                </li>
-                <li>
-                  <img
-                    className="object-cover w-16 h-16 rounded-md"
-                    src="../../photos/tee-green-person-2.png"
-                    alt
-                  />
-                </li>
-              </ul> */}
+            
             </div>
             <div className="lg:top-0 lg:sticky">
               <form className="space-y-4 lg:pt-8">
-                {/* <fieldset>
-                  <legend className="text-lg font-bold">Color</legend>
-                  <div className="flex mt-2 space-x-1">
-                    <label htmlFor="color_green" className="cursor-pointer">
-                      <input
-                        type="radio"
-                        id="color_green"
-                        name="color"
-                        className="sr-only peer"
-                        defaultChecked
-                      />
-                      <span className="block w-6 h-6 bg-green-700 border border-gray-200 rounded-full ring-1 ring-offset-1 ring-transparent peer-checked:ring-gray-300" />
-                    </label>
-                    <label htmlFor="color_blue" className="cursor-pointer">
-                      <input
-                        type="radio"
-                        id="color_blue"
-                        name="color"
-                        className="sr-only peer"
-                      />
-                      <span className="block w-6 h-6 bg-blue-700 border border-gray-200 rounded-full ring-1 ring-offset-1 ring-transparent peer-checked:ring-gray-300" />
-                    </label>
-                    <label htmlFor="color_pink" className="cursor-pointer">
-                      <input
-                        type="radio"
-                        id="color_pink"
-                        name="color"
-                        className="sr-only peer"
-                      />
-                      <span className="block w-6 h-6 bg-pink-700 border border-gray-200 rounded-full ring-1 ring-offset-1 ring-transparent peer-checked:ring-gray-300" />
-                    </label>
-                    <label htmlFor="color_red" className="cursor-pointer">
-                      <input
-                        type="radio"
-                        id="color_red"
-                        name="color"
-                        className="sr-only peer"
-                      />
-                      <span className="block w-6 h-6 bg-red-700 border border-gray-200 rounded-full ring-1 ring-offset-1 ring-transparent peer-checked:ring-gray-300" />
-                    </label>
-                    <label htmlFor="color_indigo" className="cursor-pointer">
-                      <input
-                        type="radio"
-                        id="color_indigo"
-                        name="color"
-                        className="sr-only peer"
-                      />
-                      <span className="block w-6 h-6 bg-indigo-700 border border-gray-200 rounded-full ring-1 ring-offset-1 ring-transparent peer-checked:ring-gray-300" />
-                    </label>
-                  </div>
-                </fieldset> */}
-                {/* <fieldset>
-                  <legend className="text-lg font-bold">Material</legend>
-                  <div className="flex mt-2 space-x-1">
-                    <label htmlFor="material_cotton" className="cursor-pointer">
-                      <input
-                        type="radio"
-                        id="material_cotton"
-                        name="material"
-                        className="sr-only peer"
-                        defaultChecked
-                      />
-                      <span className="block px-3 py-1 text-xs border border-gray-200 rounded-full peer-checked:bg-gray-100">
-                        Cotton
-                      </span>
-                    </label>
-                    <label htmlFor="material_wool" className="cursor-pointer">
-                      <input
-                        type="radio"
-                        id="material_wool"
-                        name="material"
-                        className="sr-only peer"
-                        defaultChecked
-                      />
-                      <span className="block px-3 py-1 text-xs border border-gray-200 rounded-full peer-checked:bg-gray-100">
-                        Wool
-                      </span>
-                    </label>
-                  </div>
-                </fieldset> */}
+              
                 <div className="p-4 bg-gray-100 border rounded">
                   <p className="text-sm">
                     <span className="block">

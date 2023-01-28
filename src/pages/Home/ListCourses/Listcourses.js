@@ -9,21 +9,23 @@ import { http, TOKEN_CYBERSOFT } from "../../../utils/config";
 import style from './Listcourses.module.css'
 export default function Listcourses(props) {
   const { arrCourses } = useSelector((state) => state.coursesReducer);
+  console.log('arrCourses',arrCourses)
   const dispatch = useDispatch();
   const {arrMenu} = useSelector( state => state.subNavReducer );
-
+  
   useEffect(() => {
     dispatch(getarrCourse());
   }, []);
+  // const handleArrayUser = arrCourses.filter( item => typeof item.moTa == string)
+  // console.log('handleArrayUser',handleArrayUser)
 
   const renderCourses = () => {
-    return arrCourses.map((course, index) => {
-      return <Course course={course} index={index} />;
+    return arrCourses.map((course,index) => {
+      return   <Course course={course} index={index}  />;
     });
   };
   const renderMenu = () => {
     return arrMenu.map((item,index)=>{
-      // console.log('item',item);
       return  <div key={index}>
       <NavLink to={`/list-danhmuc/${item.maDanhMuc}`} className={style.subNav1} style={{fontSize:'15px'}} >{item.tenDanhMuc} </NavLink>
       </div>
@@ -38,15 +40,7 @@ export default function Listcourses(props) {
           mỗi tháng
         </h3>
         <div className="text-xs  lg:text-xl  flex space-x-4 ml-1 font-bold text-gray-500 cursor-pointer">
-          {/* <h3>Python</h3>
-          <h3>Excel</h3>
-          <h3>Javascript</h3>
-          <h3>Data Science</h3>
-          <h3>AWS</h3>
-          <h3>Drawing</h3> */}
-          {renderMenu()}
-          {/* <SubNav /> */}
-
+        {renderMenu()}
         </div>
 
         <div className="text-left w-full border border-gray-300 p-7">
@@ -69,7 +63,6 @@ export default function Listcourses(props) {
           </div>
         </div>
       </div>
-      {/* grid grid-cols-4 container mx-auto */}
     </div>
   );
 }
